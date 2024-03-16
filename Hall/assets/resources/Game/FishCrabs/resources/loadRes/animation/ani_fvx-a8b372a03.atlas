@@ -1,0 +1,27 @@
+
+ani_fvx-a8b372a03.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/L
+  rotate: false
+  xy: 2, 2
+  size: 307, 144
+  orig: 307, 144
+  offset: 0, 0
+  index: -1
+images/M
+  rotate: false
+  xy: 311, 2
+  size: 158, 144
+  orig: 158, 144
+  offset: 0, 0
+  index: -1
+images/S
+  rotate: false
+  xy: 471, 27
+  size: 127, 119
+  orig: 127, 119
+  offset: 0, 0
+  index: -1

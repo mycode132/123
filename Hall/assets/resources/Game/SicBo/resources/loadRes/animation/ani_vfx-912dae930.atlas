@@ -1,0 +1,20 @@
+
+ani_vfx-912dae930.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ani_vfx_mb_1
+  rotate: false
+  xy: 2, 2
+  size: 379, 406
+  orig: 379, 406
+  offset: 0, 0
+  index: -1
+ani_vfx_mb_2
+  rotate: false
+  xy: 383, 2
+  size: 379, 406
+  orig: 379, 406
+  offset: 0, 0
+  index: -1

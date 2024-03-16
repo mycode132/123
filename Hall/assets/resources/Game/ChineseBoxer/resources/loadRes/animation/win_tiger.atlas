@@ -1,0 +1,125 @@
+
+win_tiger.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tiger_00
+  rotate: false
+  xy: 0, 705
+  size: 226, 233
+  orig: 226, 233
+  offset: 0, 0
+  index: -1
+tiger_01
+  rotate: false
+  xy: 0, 470
+  size: 226, 233
+  orig: 226, 233
+  offset: 0, 0
+  index: -1
+tiger_02
+  rotate: false
+  xy: 228, 705
+  size: 226, 233
+  orig: 226, 233
+  offset: 0, 0
+  index: -1
+tiger_03
+  rotate: false
+  xy: 0, 235
+  size: 226, 233
+  orig: 226, 233
+  offset: 0, 0
+  index: -1
+tiger_04
+  rotate: false
+  xy: 228, 470
+  size: 226, 233
+  orig: 226, 233
+  offset: 0, 0
+  index: -1
+tiger_05
+  rotate: false
+  xy: 456, 705
+  size: 226, 233
+  orig: 226, 233
+  offset: 0, 0
+  index: -1
+tiger_06
+  rotate: false
+  xy: 0, 0
+  size: 226, 233
+  orig: 226, 233
+  offset: 0, 0
+  index: -1
+tiger_07
+  rotate: false
+  xy: 228, 235
+  size: 226, 233
+  orig: 226, 233
+  offset: 0, 0
+  index: -1
+tiger_08
+  rotate: false
+  xy: 456, 470
+  size: 226, 233
+  orig: 226, 233
+  offset: 0, 0
+  index: -1
+tiger_09
+  rotate: false
+  xy: 684, 705
+  size: 226, 233
+  orig: 226, 233
+  offset: 0, 0
+  index: -1
+tiger_10
+  rotate: false
+  xy: 228, 0
+  size: 226, 233
+  orig: 226, 233
+  offset: 0, 0
+  index: -1
+tiger_11
+  rotate: false
+  xy: 456, 235
+  size: 226, 233
+  orig: 226, 233
+  offset: 0, 0
+  index: -1
+tiger_12
+  rotate: false
+  xy: 684, 470
+  size: 226, 233
+  orig: 226, 233
+  offset: 0, 0
+  index: -1
+tiger_13
+  rotate: false
+  xy: 912, 705
+  size: 226, 233
+  orig: 226, 233
+  offset: 0, 0
+  index: -1
+tiger_14
+  rotate: false
+  xy: 456, 0
+  size: 226, 233
+  orig: 226, 233
+  offset: 0, 0
+  index: -1
+tiger_15
+  rotate: false
+  xy: 684, 235
+  size: 226, 233
+  orig: 226, 233
+  offset: 0, 0
+  index: -1
+tiger_16
+  rotate: false
+  xy: 912, 470
+  size: 226, 233
+  orig: 226, 233
+  offset: 0, 0
+  index: -1

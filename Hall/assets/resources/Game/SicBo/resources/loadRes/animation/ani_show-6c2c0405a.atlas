@@ -1,0 +1,55 @@
+
+ani_show-6c2c0405a.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+img_show_dice_2
+  rotate: false
+  xy: 2, 158
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+img_show_dice_4
+  rotate: false
+  xy: 2, 76
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+img_show_dice_6
+  rotate: false
+  xy: 84, 158
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+num_show_12
+  rotate: false
+  xy: 84, 84
+  size: 70, 72
+  orig: 70, 72
+  offset: 0, 0
+  index: -1
+tx_show_big
+  rotate: false
+  xy: 166, 166
+  size: 70, 72
+  orig: 70, 72
+  offset: 0, 0
+  index: -1
+tx_show_even
+  rotate: false
+  xy: 2, 2
+  size: 70, 72
+  orig: 70, 72
+  offset: 0, 0
+  index: -1
+tx_show_points
+  rotate: false
+  xy: 74, 2
+  size: 70, 72
+  orig: 70, 72
+  offset: 0, 0
+  index: -1

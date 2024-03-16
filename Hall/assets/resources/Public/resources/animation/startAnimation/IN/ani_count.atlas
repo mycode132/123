@@ -1,0 +1,139 @@
+
+ani_count.png
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+djs_0
+  rotate: false
+  xy: 560, 2
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_1
+  rotate: false
+  xy: 1288, 314
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_10
+  rotate: false
+  xy: 1503, 167
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_11
+  rotate: false
+  xy: 1650, 167
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_2
+  rotate: false
+  xy: 1435, 314
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_3
+  rotate: false
+  xy: 1582, 314
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_4
+  rotate: false
+  xy: 1729, 314
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_5
+  rotate: false
+  xy: 1876, 314
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_6
+  rotate: false
+  xy: 915, 172
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_7
+  rotate: false
+  xy: 1062, 172
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_8
+  rotate: false
+  xy: 1209, 167
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_9
+  rotate: false
+  xy: 1356, 167
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+line_0
+  rotate: false
+  xy: 730, 199
+  size: 183, 118
+  orig: 183, 118
+  offset: 0, 0
+  index: -1
+num_1
+  rotate: false
+  xy: 1797, 214
+  size: 66, 98
+  orig: 66, 98
+  offset: 0, 0
+  index: -1
+num_2
+  rotate: false
+  xy: 1865, 214
+  size: 66, 98
+  orig: 66, 98
+  offset: 0, 0
+  index: -1
+num_3
+  rotate: false
+  xy: 1933, 214
+  size: 66, 98
+  orig: 66, 98
+  offset: 0, 0
+  index: -1
+pic_base
+  rotate: false
+  xy: 2, 149
+  size: 726, 310
+  orig: 726, 310
+  offset: 0, 0
+  index: -1
+tx_start
+  rotate: false
+  xy: 2, 7
+  size: 556, 140
+  orig: 556, 140
+  offset: 0, 0
+  index: -1
+tx_stop
+  rotate: false
+  xy: 730, 319
+  size: 556, 140
+  orig: 556, 140
+  offset: 0, 0
+  index: -1

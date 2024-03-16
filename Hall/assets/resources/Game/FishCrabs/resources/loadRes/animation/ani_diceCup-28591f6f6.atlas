@@ -1,0 +1,83 @@
+
+ani_dicecup-28591f6f6.png
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+S_shadow
+  rotate: false
+  xy: 1604, 333
+  size: 122, 90
+  orig: 122, 90
+  offset: 0, 0
+  index: -1
+cup
+  rotate: false
+  xy: 833, 110
+  size: 322, 313
+  orig: 322, 313
+  offset: 0, 0
+  index: -1
+cup_shadow
+  rotate: false
+  xy: 2, 125
+  size: 420, 298
+  orig: 420, 298
+  offset: 0, 0
+  index: -1
+cup_shadow02
+  rotate: false
+  xy: 1157, 201
+  size: 334, 222
+  orig: 334, 222
+  offset: 0, 0
+  index: -1
+dice01
+  rotate: false
+  xy: 2, 2
+  size: 109, 121
+  orig: 109, 121
+  offset: 0, 0
+  index: -1
+dice02
+  rotate: false
+  xy: 1493, 302
+  size: 109, 121
+  orig: 109, 121
+  offset: 0, 0
+  index: -1
+dice03
+  rotate: false
+  xy: 113, 2
+  size: 109, 121
+  orig: 109, 121
+  offset: 0, 0
+  index: -1
+plate
+  rotate: false
+  xy: 424, 137
+  size: 407, 286
+  orig: 407, 286
+  offset: 0, 0
+  index: -1
+shadow01
+  rotate: false
+  xy: 1157, 137
+  size: 106, 62
+  orig: 106, 62
+  offset: 0, 0
+  index: -1
+shadow02
+  rotate: false
+  xy: 1157, 137
+  size: 106, 62
+  orig: 106, 62
+  offset: 0, 0
+  index: -1
+shadow03
+  rotate: false
+  xy: 1157, 137
+  size: 106, 62
+  orig: 106, 62
+  offset: 0, 0
+  index: -1

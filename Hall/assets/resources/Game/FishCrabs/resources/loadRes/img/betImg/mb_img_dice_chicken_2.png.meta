@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "c56fe20e-c54c-4c9c-8d90-d3c1f316a77d",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 136,
+  "height": 151,
+  "platformSettings": {},
+  "subMetas": {
+    "mb_img_dice_chicken_2": {
+      "ver": "1.0.6",
+      "uuid": "e58b2525-28ec-4998-9ada-1ff1a527e23c",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "c56fe20e-c54c-4c9c-8d90-d3c1f316a77d",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 1,
+      "trimY": 1,
+      "width": 134,
+      "height": 149,
+      "rawWidth": 136,
+      "rawHeight": 151,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

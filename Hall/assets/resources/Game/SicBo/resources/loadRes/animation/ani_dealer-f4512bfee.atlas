@@ -1,0 +1,293 @@
+
+ani_dealer-f4512bfee.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+3_new
+  rotate: true
+  xy: 765, 841
+  size: 176, 187
+  orig: 176, 187
+  offset: 0, 0
+  index: -1
+bi
+  rotate: false
+  xy: 753, 748
+  size: 53, 62
+  orig: 53, 62
+  offset: 0, 0
+  index: -1
+er
+  rotate: true
+  xy: 120, 211
+  size: 13, 48
+  orig: 13, 48
+  offset: 0, 0
+  index: -1
+er1
+  rotate: false
+  xy: 520, 820
+  size: 21, 41
+  orig: 21, 41
+  offset: 0, 0
+  index: -1
+fa1
+  rotate: false
+  xy: 137, 598
+  size: 111, 194
+  orig: 111, 194
+  offset: 0, 0
+  index: -1
+fa2
+  rotate: false
+  xy: 2, 204
+  size: 116, 255
+  orig: 116, 255
+  offset: 0, 0
+  index: -1
+fa3
+  rotate: false
+  xy: 416, 596
+  size: 92, 128
+  orig: 92, 128
+  offset: 0, 0
+  index: -1
+fa4
+  rotate: false
+  xy: 120, 226
+  size: 79, 224
+  orig: 79, 224
+  offset: 0, 0
+  index: -1
+fa5
+  rotate: true
+  xy: 250, 863
+  size: 154, 307
+  orig: 154, 307
+  offset: 0, 0
+  index: -1
+fa6
+  rotate: false
+  xy: 383, 726
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: -1
+l_shou1
+  rotate: true
+  xy: 559, 879
+  size: 138, 204
+  orig: 138, 204
+  offset: 0, 0
+  index: -1
+l_shou2
+  rotate: false
+  xy: 559, 804
+  size: 162, 73
+  orig: 162, 73
+  offset: 0, 0
+  index: -1
+l_shou2_2
+  rotate: false
+  xy: 520, 729
+  size: 162, 73
+  orig: 162, 73
+  offset: 0, 0
+  index: -1
+l_shou3
+  rotate: true
+  xy: 954, 936
+  size: 81, 67
+  orig: 81, 67
+  offset: 0, 0
+  index: -1
+l_shou3_2
+  rotate: true
+  xy: 954, 853
+  size: 81, 67
+  orig: 81, 67
+  offset: 0, 0
+  index: -1
+l_shou3_3
+  rotate: true
+  xy: 684, 721
+  size: 81, 67
+  orig: 81, 67
+  offset: 0, 0
+  index: -1
+l_shou3a
+  rotate: true
+  xy: 682, 615
+  size: 104, 81
+  orig: 104, 81
+  offset: 0, 0
+  index: -1
+l_shou4
+  rotate: false
+  xy: 765, 610
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: -1
+l_shou5
+  rotate: false
+  xy: 765, 664
+  size: 51, 55
+  orig: 51, 55
+  offset: 0, 0
+  index: -1
+l_shou6
+  rotate: true
+  xy: 741, 561
+  size: 47, 55
+  orig: 47, 55
+  offset: 0, 0
+  index: -1
+l_shou7
+  rotate: false
+  xy: 853, 744
+  size: 43, 41
+  orig: 43, 41
+  offset: 0, 0
+  index: -1
+lian
+  rotate: true
+  xy: 510, 616
+  size: 108, 84
+  orig: 108, 84
+  offset: 0, 0
+  index: -1
+mei
+  rotate: false
+  xy: 510, 595
+  size: 94, 19
+  orig: 94, 19
+  offset: 0, 0
+  index: -1
+nian
+  rotate: false
+  xy: 137, 452
+  size: 110, 144
+  orig: 110, 144
+  offset: 0, 0
+  index: -1
+r_shou1
+  rotate: false
+  xy: 250, 678
+  size: 131, 183
+  orig: 131, 183
+  offset: 0, 0
+  index: -1
+r_shou2
+  rotate: false
+  xy: 250, 600
+  size: 164, 76
+  orig: 164, 76
+  offset: 0, 0
+  index: -1
+r_shou2_2
+  rotate: true
+  xy: 103, 38
+  size: 164, 76
+  orig: 164, 76
+  offset: 0, 0
+  index: -1
+r_shou3
+  rotate: false
+  xy: 606, 555
+  size: 71, 67
+  orig: 71, 67
+  offset: 0, 0
+  index: -1
+r_shou3a
+  rotate: false
+  xy: 596, 624
+  size: 84, 103
+  orig: 84, 103
+  offset: 0, 0
+  index: -1
+r_shou4
+  rotate: false
+  xy: 853, 787
+  size: 49, 52
+  orig: 49, 52
+  offset: 0, 0
+  index: -1
+r_shou5
+  rotate: true
+  xy: 679, 557
+  size: 56, 60
+  orig: 56, 60
+  offset: 0, 0
+  index: -1
+r_shou6
+  rotate: false
+  xy: 808, 752
+  size: 43, 58
+  orig: 43, 58
+  offset: 0, 0
+  index: -1
+r_shou7
+  rotate: false
+  xy: 723, 835
+  size: 40, 42
+  orig: 40, 42
+  offset: 0, 0
+  index: -1
+sheng1
+  rotate: true
+  xy: 2, 31
+  size: 171, 99
+  orig: 171, 99
+  offset: 0, 0
+  index: -1
+sheng2
+  rotate: false
+  xy: 2, 794
+  size: 246, 223
+  orig: 246, 223
+  offset: 0, 0
+  index: -1
+xin
+  rotate: true
+  xy: 904, 790
+  size: 49, 41
+  orig: 49, 41
+  offset: 0, 0
+  index: -1
+yan1
+  rotate: false
+  xy: 2, 2
+  size: 93, 27
+  orig: 93, 27
+  offset: 0, 0
+  index: -1
+yan2
+  rotate: false
+  xy: 765, 812
+  size: 85, 27
+  orig: 85, 27
+  offset: 0, 0
+  index: -1
+yingz
+  rotate: true
+  xy: 201, 232
+  size: 218, 49
+  orig: 218, 49
+  offset: 0, 0
+  index: -1
+zui
+  rotate: false
+  xy: 753, 721
+  size: 49, 25
+  orig: 49, 25
+  offset: 0, 0
+  index: -1
+zuo_new
+  rotate: true
+  xy: 2, 461
+  size: 331, 133
+  orig: 331, 133
+  offset: 0, 0
+  index: -1

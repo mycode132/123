@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "2116f081-d8a8-4067-af9b-976957157c60",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 136,
+  "height": 151,
+  "platformSettings": {},
+  "subMetas": {
+    "mb_img_dice_fish_1": {
+      "ver": "1.0.6",
+      "uuid": "1366b974-149d-4b45-b995-42d09973b8d2",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "2116f081-d8a8-4067-af9b-976957157c60",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 1,
+      "trimY": 1,
+      "width": 134,
+      "height": 149,
+      "rawWidth": 136,
+      "rawHeight": 151,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

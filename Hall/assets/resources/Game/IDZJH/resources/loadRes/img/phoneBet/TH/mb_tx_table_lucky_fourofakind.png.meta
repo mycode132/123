@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "f03f8415-684a-40fd-8259-3a570744ccf7",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 74,
+  "height": 20,
+  "platformSettings": {},
+  "subMetas": {
+    "mb_tx_table_lucky_fourofakind": {
+      "ver": "1.0.6",
+      "uuid": "8a67d784-4705-41a2-81f6-f5ac8a691716",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "f03f8415-684a-40fd-8259-3a570744ccf7",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0.5,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 74,
+      "height": 19,
+      "rawWidth": 74,
+      "rawHeight": 20,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

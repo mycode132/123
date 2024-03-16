@@ -1,0 +1,146 @@
+
+ani_dealer-5edcac902.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm_L
+  rotate: true
+  xy: 1170, 623
+  size: 148, 293
+  orig: 148, 293
+  offset: 0, 0
+  index: -1
+arm_R
+  rotate: false
+  xy: 681, 246
+  size: 154, 301
+  orig: 154, 301
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 2, 49
+  size: 358, 498
+  orig: 358, 498
+  offset: 0, 0
+  index: -1
+body02
+  rotate: false
+  xy: 1170, 773
+  size: 319, 234
+  orig: 319, 234
+  offset: 0, 0
+  index: -1
+eye_L
+  rotate: false
+  xy: 633, 151
+  size: 42, 35
+  orig: 42, 35
+  offset: 0, 0
+  index: -1
+eye_R
+  rotate: false
+  xy: 1674, 806
+  size: 44, 35
+  orig: 44, 35
+  offset: 0, 0
+  index: -1
+eye_close
+  rotate: false
+  xy: 2, 2
+  size: 144, 45
+  orig: 144, 45
+  offset: 0, 0
+  index: -1
+face
+  rotate: true
+  xy: 1491, 843
+  size: 164, 238
+  orig: 164, 238
+  offset: 0, 0
+  index: -1
+hair
+  rotate: false
+  xy: 854, 616
+  size: 314, 391
+  orig: 314, 391
+  offset: 0, 0
+  index: -1
+hair02
+  rotate: false
+  xy: 362, 188
+  size: 317, 359
+  orig: 317, 359
+  offset: 0, 0
+  index: -1
+hand_L01
+  rotate: false
+  xy: 1731, 845
+  size: 181, 162
+  orig: 181, 162
+  offset: 0, 0
+  index: -1
+hand_L02
+  rotate: false
+  xy: 854, 532
+  size: 152, 82
+  orig: 152, 82
+  offset: 0, 0
+  index: -1
+hand_L03
+  rotate: false
+  xy: 681, 175
+  size: 137, 69
+  orig: 137, 69
+  offset: 0, 0
+  index: -1
+hand_R01
+  rotate: false
+  xy: 1491, 679
+  size: 181, 162
+  orig: 181, 162
+  offset: 0, 0
+  index: -1
+hand_R02
+  rotate: false
+  xy: 1008, 532
+  size: 151, 82
+  orig: 151, 82
+  offset: 0, 0
+  index: -1
+mouth
+  rotate: false
+  xy: 362, 51
+  size: 90, 36
+  orig: 90, 36
+  offset: 0, 0
+  index: -1
+plate
+  rotate: false
+  xy: 362, 89
+  size: 269, 97
+  orig: 269, 97
+  offset: 0, 0
+  index: -1
+plate02
+  rotate: true
+  xy: 1914, 856
+  size: 151, 104
+  orig: 151, 104
+  offset: 0, 0
+  index: -1
+table
+  rotate: false
+  xy: 2, 549
+  size: 850, 458
+  orig: 850, 458
+  offset: 0, 0
+  index: -1
+teeth
+  rotate: true
+  xy: 2020, 953
+  size: 54, 18
+  orig: 54, 18
+  offset: 0, 0
+  index: -1

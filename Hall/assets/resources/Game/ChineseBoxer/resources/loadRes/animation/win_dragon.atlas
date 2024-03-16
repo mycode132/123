@@ -1,0 +1,146 @@
+
+win_dragon.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dragon_00
+  rotate: false
+  xy: 0, 544
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+dragon_01
+  rotate: false
+  xy: 0, 272
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+dragon_02
+  rotate: false
+  xy: 272, 544
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+dragon_03
+  rotate: false
+  xy: 0, 0
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+dragon_04
+  rotate: false
+  xy: 272, 272
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+dragon_05
+  rotate: false
+  xy: 544, 544
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+dragon_06
+  rotate: false
+  xy: 272, 0
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+dragon_07
+  rotate: false
+  xy: 544, 272
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+dragon_08
+  rotate: false
+  xy: 816, 544
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+dragon_09
+  rotate: false
+  xy: 544, 0
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+dragon_10
+  rotate: false
+  xy: 816, 272
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+dragon_11
+  rotate: false
+  xy: 1088, 544
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+dragon_12
+  rotate: false
+  xy: 816, 0
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+dragon_13
+  rotate: false
+  xy: 1088, 272
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+dragon_14
+  rotate: false
+  xy: 1360, 544
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+dragon_15
+  rotate: false
+  xy: 1088, 0
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+dragon_16
+  rotate: false
+  xy: 1360, 272
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+dragon_17
+  rotate: false
+  xy: 1632, 544
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+dragon_18
+  rotate: false
+  xy: 1360, 0
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+dragon_19
+  rotate: false
+  xy: 1632, 272
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1

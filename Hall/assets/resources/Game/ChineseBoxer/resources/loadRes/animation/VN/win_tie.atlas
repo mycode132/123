@@ -1,0 +1,27 @@
+
+win_tie.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+spot
+  rotate: false
+  xy: 255, 143
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+tx
+  rotate: false
+  xy: 255, 152
+  size: 163, 101
+  orig: 163, 101
+  offset: 0, 0
+  index: -1
+vfx
+  rotate: false
+  xy: 2, 2
+  size: 251, 251
+  orig: 251, 251
+  offset: 0, 0
+  index: -1

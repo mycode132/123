@@ -1,0 +1,97 @@
+
+ani_vs.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: true
+  xy: 1122, 1312
+  size: 260, 230
+  orig: 260, 230
+  offset: 0, 0
+  index: -1
+2
+  rotate: true
+  xy: 1122, 1143
+  size: 167, 200
+  orig: 167, 200
+  offset: 0, 0
+  index: -1
+b01
+  rotate: true
+  xy: 169, 50
+  size: 687, 167
+  orig: 687, 167
+  offset: 0, 0
+  index: -1
+b02
+  rotate: true
+  xy: 0, 39
+  size: 698, 167
+  orig: 698, 167
+  offset: 0, 0
+  index: -1
+d01
+  rotate: false
+  xy: 1239, 1663
+  size: 512, 363
+  orig: 512, 363
+  offset: 0, 0
+  index: -1
+guang
+  rotate: true
+  xy: 338, 0
+  size: 243, 287
+  orig: 243, 287
+  offset: 0, 0
+  index: -1
+h01
+  rotate: false
+  xy: 0, 739
+  size: 591, 379
+  orig: 591, 379
+  offset: 0, 0
+  index: -1
+h02
+  rotate: true
+  xy: 338, 245
+  size: 492, 355
+  orig: 492, 355
+  offset: 0, 0
+  index: -1
+h03
+  rotate: false
+  xy: 0, 1574
+  size: 646, 452
+  orig: 646, 452
+  offset: 0, 0
+  index: -1
+huoguang
+  rotate: false
+  xy: 1753, 1752
+  size: 284, 274
+  orig: 284, 274
+  offset: 0, 0
+  index: -1
+l01
+  rotate: false
+  xy: 648, 1574
+  size: 589, 452
+  orig: 589, 452
+  offset: 0, 0
+  index: -1
+l02
+  rotate: false
+  xy: 599, 1175
+  size: 521, 397
+  orig: 521, 397
+  offset: 0, 0
+  index: -1
+l03
+  rotate: false
+  xy: 0, 1120
+  size: 597, 452
+  orig: 597, 452
+  offset: 0, 0
+  index: -1

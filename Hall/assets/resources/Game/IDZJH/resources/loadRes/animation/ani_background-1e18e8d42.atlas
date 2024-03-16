@@ -1,0 +1,90 @@
+
+ani_background-1e18e8d42.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bulb_1
+  rotate: false
+  xy: 232, 2
+  size: 206, 205
+  orig: 206, 205
+  offset: 0, 0
+  index: -1
+bulb_2
+  rotate: true
+  xy: 503, 84
+  size: 123, 108
+  orig: 123, 108
+  offset: 0, 0
+  index: -1
+bulb_3
+  rotate: true
+  xy: 738, 98
+  size: 120, 108
+  orig: 120, 108
+  offset: 0, 0
+  index: -1
+bulb_4
+  rotate: false
+  xy: 613, 104
+  size: 123, 114
+  orig: 123, 114
+  offset: 0, 0
+  index: -1
+bulb_6
+  rotate: true
+  xy: 813, 237
+  size: 215, 184
+  orig: 215, 184
+  offset: 0, 0
+  index: -1
+bulb_7
+  rotate: false
+  xy: 2, 13
+  size: 228, 194
+  orig: 228, 194
+  offset: 0, 0
+  index: -1
+run_light
+  rotate: false
+  xy: 440, 16
+  size: 61, 191
+  orig: 61, 191
+  offset: 0, 0
+  index: -1
+window_light_1
+  rotate: true
+  xy: 598, 454
+  size: 266, 382
+  orig: 266, 382
+  offset: 0, 0
+  index: -1
+window_light_2
+  rotate: false
+  xy: 2, 209
+  size: 585, 405
+  orig: 585, 405
+  offset: 0, 0
+  index: -1
+window_light_3
+  rotate: false
+  xy: 598, 722
+  size: 416, 291
+  orig: 416, 291
+  offset: 0, 0
+  index: -1
+window_light_4
+  rotate: false
+  xy: 2, 616
+  size: 594, 397
+  orig: 594, 397
+  offset: 0, 0
+  index: -1
+window_particle
+  rotate: false
+  xy: 589, 220
+  size: 222, 232
+  orig: 222, 232
+  offset: 0, 0
+  index: -1

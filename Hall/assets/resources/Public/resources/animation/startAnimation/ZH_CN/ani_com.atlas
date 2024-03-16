@@ -1,0 +1,139 @@
+
+../ani_com.png
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+djs_0
+  rotate: false
+  xy: 915, 235
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_1
+  rotate: false
+  xy: 396, 33
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_10
+  rotate: false
+  xy: 877, 88
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_11
+  rotate: false
+  xy: 1062, 198
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_2
+  rotate: false
+  xy: 543, 33
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_3
+  rotate: false
+  xy: 1124, 345
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_4
+  rotate: false
+  xy: 1271, 345
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_5
+  rotate: false
+  xy: 1418, 345
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_6
+  rotate: false
+  xy: 1565, 345
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_7
+  rotate: false
+  xy: 1712, 345
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_8
+  rotate: false
+  xy: 1859, 345
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_9
+  rotate: false
+  xy: 730, 115
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+line_0
+  rotate: false
+  xy: 730, 262
+  size: 183, 118
+  orig: 183, 118
+  offset: 0, 0
+  index: -1
+num_1
+  rotate: true
+  xy: 2, 2
+  size: 66, 98
+  orig: 66, 98
+  offset: 0, 0
+  index: -1
+num_2
+  rotate: false
+  xy: 1209, 245
+  size: 66, 98
+  orig: 66, 98
+  offset: 0, 0
+  index: -1
+num_3
+  rotate: true
+  xy: 102, 2
+  size: 66, 98
+  orig: 66, 98
+  offset: 0, 0
+  index: -1
+pic_base
+  rotate: false
+  xy: 2, 180
+  size: 726, 310
+  orig: 726, 310
+  offset: 0, 0
+  index: -1
+tx_start
+  rotate: false
+  xy: 2, 70
+  size: 392, 108
+  orig: 392, 108
+  offset: 0, 0
+  index: -1
+tx_stop
+  rotate: false
+  xy: 730, 382
+  size: 392, 108
+  orig: 392, 108
+  offset: 0, 0
+  index: -1

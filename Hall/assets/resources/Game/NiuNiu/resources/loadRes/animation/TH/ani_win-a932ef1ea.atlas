@@ -1,0 +1,34 @@
+
+ani_win-a932ef1ea.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+img_light
+  rotate: false
+  xy: 2, 81
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+img_ribbon
+  rotate: false
+  xy: 2, 2
+  size: 211, 77
+  orig: 211, 77
+  offset: 0, 0
+  index: -1
+img_star
+  rotate: false
+  xy: 149, 131
+  size: 39, 39
+  orig: 39, 39
+  offset: 0, 0
+  index: -1
+tx_win
+  rotate: false
+  xy: 149, 172
+  size: 104, 54
+  orig: 104, 54
+  offset: 0, 0
+  index: -1

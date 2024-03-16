@@ -1,0 +1,83 @@
+
+ani_show-a48e59337.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+img_show_01
+  rotate: false
+  xy: 2, 146
+  size: 330, 46
+  orig: 330, 46
+  offset: 0, 0
+  index: -1
+img_show_02
+  rotate: false
+  xy: 334, 194
+  size: 330, 46
+  orig: 330, 46
+  offset: 0, 0
+  index: -1
+img_show_03
+  rotate: false
+  xy: 2, 98
+  size: 330, 46
+  orig: 330, 46
+  offset: 0, 0
+  index: -1
+img_show_04
+  rotate: false
+  xy: 334, 146
+  size: 330, 46
+  orig: 330, 46
+  offset: 0, 0
+  index: -1
+img_show_05
+  rotate: false
+  xy: 666, 194
+  size: 330, 46
+  orig: 330, 46
+  offset: 0, 0
+  index: -1
+img_show_06
+  rotate: false
+  xy: 2, 50
+  size: 330, 46
+  orig: 330, 46
+  offset: 0, 0
+  index: -1
+img_show_07
+  rotate: false
+  xy: 334, 98
+  size: 330, 46
+  orig: 330, 46
+  offset: 0, 0
+  index: -1
+img_show_08
+  rotate: false
+  xy: 666, 146
+  size: 330, 46
+  orig: 330, 46
+  offset: 0, 0
+  index: -1
+img_show_09
+  rotate: false
+  xy: 2, 2
+  size: 330, 46
+  orig: 330, 46
+  offset: 0, 0
+  index: -1
+img_show_10
+  rotate: false
+  xy: 2, 194
+  size: 330, 46
+  orig: 330, 46
+  offset: 0, 0
+  index: -1
+img_show_bg
+  rotate: false
+  xy: 334, 28
+  size: 284, 68
+  orig: 284, 68
+  offset: 0, 0
+  index: -1

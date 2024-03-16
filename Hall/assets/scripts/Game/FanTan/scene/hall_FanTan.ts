@@ -1,0 +1,1309 @@
+
+import GameEngine from "../../../control/engines/GameEngine";
+import Http, { IHttpMethod } from "../../../control/engines/services/Core/Http";
+import gameConfig from "../../../control/Game/configs/gameConfig";
+import GameInstInfo from "../../../Public/ControlScript/GameInstInfo";
+import ChipControl from "../../../Public/ControlScript/ChipControl";
+import SoundMgr from "../../../Public/ControlScript/SoundMgr";
+
+let {ccclass, property, menu} = cc._decorator;
+
+@ccclass
+@menu("番摊/大厅")
+export default class hall extends cc.Component {
+	@property({type: cc.Node, displayName: '背景节点'})
+	ndBG: cc.Node = null;
+	@property({type: cc.Node, displayName: '上根节点'})
+	upRoot: cc.Node = null;
+	@property({type: cc.Node, displayName: '下根节点'})
+	downRoot: cc.Node = null;
+
+	@property({type: cc.Node, displayName: '下注节点'})
+	middleRoot: cc.Node = null;
+	@property({type: cc.Node, displayName: '筹码节点'})
+	nChipMode: cc.Node = null;
+
+	@property({type: cc.RichText, displayName: '总下注'})
+	nAllChipLab: cc.RichText = null;
+
+	@property({type: cc.Sprite, displayName: '游戏状态'})
+    m_GameStatusLab: cc.Sprite = null;
+
+	@property({type: cc.Label, displayName: '游戏局数'})
+    m_GamePlayLab: cc.Label = null;
+
+	@property({type: cc.Button, displayName: '在线玩家'})
+	but_bank: cc.Node = null;
+
+	@property({type:cc.Node,displayName:"筹码列表"})
+	m_ChipView : cc.Node = null
+	m_ChipViewComponent:ChipControl = null
+
+	@property({type:cc.Node,displayName:"游戏提示节点"})
+	m_GameTipsNode :cc.Node = null
+
+	@property({type:[cc.SpriteFrame],displayName:"投注"})
+	m_SpriteFrame:cc.SpriteFrame[] = []
+
+	m_GameSetNode :cc.Node = null
+	@property({type:cc.Prefab,displayName:"设置"})
+	m_settingprefab :cc.Prefab = null
+
+	@property({type:cc.Prefab,displayName:"在线玩家"})
+	m_OnlinePlayerprefab :cc.Prefab = null
+
+	//所有下注节点
+	m_AllDonwButNode = []
+
+	//动画控制
+	m_AnimationComponent = null
+	//历史记录
+	m_RecordsComponent = null
+	//投注历史
+	m_RecordVerComponent = null
+	//在线排行
+	m_OnlinePlayerRankComponent= null
+	//投注记录
+	m_BettingRecordComponent= null
+	//游戏说明
+	m_GameExplainComponent =null
+
+	//是否初始完成  后期不再使用
+	mInit = false
+
+	//游戏场景数据
+	m_DeskChip = []  //自己桌面上已下注筹码
+	m_AllChipNode = [] //所有玩家下注的筹码
+
+	m_jetton = [0,0,0,0,0,0,0,0,0,0,0,0]   //自己下注筹码数据
+	m_wheeljetton = [0,0,0,0,0,0,0,0,0,0,0,0]   //自己下注筹码数据
+
+	m_GameStatus = {
+		//局数
+		inningCount: 20235555,
+		//龙牌点数
+		dragonCard: 1,
+		//虎牌点数
+		tigerCard: 2,
+		//是否投注
+		isBet: true,
+		//是否封盘
+		isFenPan:false,
+		//投注金额
+		betGold: 0,
+		//总投注
+		betAllGold:0,
+		//开奖结果
+		TouziPonits:0,
+		//区间
+		betsectionGold:[0,0,0,0,0,0,0,0,0,0,0,0],
+		//游戏当前状态
+		gamestatus : 1, //  1：投注   2：结束
+		//下注操作倒计时
+		gameDownChipTime : 30,
+		//是否显示筹码
+		gamechipshow:true,
+		//是否结算
+		gameisfinish:false,
+		//所有筹码是否已分发完成
+		gameisMoveAllChip:false,
+		//自己携带金币
+		mUserGold:10000000000,
+		//游戏id
+		mlottery_code:2140,
+		//win 
+		m_WinGold:0
+	}
+	m_LotteryType = ""
+
+	m_enemyPool = null
+
+	protected onLoad(): void {
+		this.m_enemyPool = new cc.NodePool();
+		let initCount = 100;
+		this.m_enemyPool.clear()
+		let enemy = null
+		for (let i = 0; i < initCount; ++i) {
+			enemy = cc.instantiate(this.nChipMode); 
+			this.m_enemyPool.put(enemy); 
+		}
+	}
+
+	createEnemy() {
+		let enemy = null;
+		if (this.m_enemyPool.size() > 0) { 
+			enemy = this.m_enemyPool.get();
+		} 
+		else { 
+			enemy = cc.instantiate(this.nChipMode);
+		}
+		enemy.active = true
+		enemy.stopAllActions()
+		return enemy
+	}
+
+	onEnemyKilled (enemy) {
+		this.m_enemyPool.put(enemy); 
+	}
+
+	onDisable(){
+		this.node.removeFromParent()
+	}
+
+	protected start(): void {
+		this.initDownRoot()
+		this.initMiddleRoot()
+		this.initGame()
+		this.initAction()
+		this.initUpRoot()
+		this.initComponent()
+		//播放背景音效
+		SoundMgr.PlayBgMusic()
+		this.initChangeImage()
+
+		GameInstInfo.getinstance().m_Disconnect = true
+		if (GameInstInfo.getinstance().m_Disconnect) {
+			this.node.getChildByName("Disconnect").active = true
+		}
+
+		//测试单机启动接口
+		if(GameInstInfo.getinstance().publishingservice){
+			GameInstInfo.getinstance().fucschedule(this,this.fucCountdown) 
+			GameInstInfo.getinstance().m_Disconnect = false
+			this.node.getChildByName("Disconnect").active = false
+		}
+
+		if (!cc.sys.isNative) {
+			this.fucServerMessige()
+		}
+
+		this.mInit  =true
+
+		//加载公共资源
+		let  set_path =`Public/setting/${GameInstInfo.getinstance().fucgepath()}`;
+		cc.resources.loadDir(set_path, cc.Asset, (completedCount, totalCount, item)=>{
+		
+		},(err, asset: cc.Asset[])=>{});
+	}
+
+	fucPostMessage(data){
+		if (!cc.sys.isNative) {
+			window.parent.postMessage(data, '*');
+		}
+	}
+
+	//游戏主动断线重连
+	fucGameDisconnect(){
+		let self =this
+		GameInstInfo.getinstance().fucstopschedule(self)
+		GameInstInfo.getinstance().m_Disconnect =  true
+		self.node.getChildByName("Disconnect").active = true
+		GameInstInfo.getinstance().m_GameIsReconnection = true
+		let  fucCheckNet = function(){
+			if (!GameInstInfo.getinstance().m_GameSettlement) {
+				self.fucPostMessage({type:"NetworkException",param:{method:"post",url:'lotteryopen',data:{LotteryCode:self.m_GameStatus.mlottery_code,Resource:"500"} } })
+				setTimeout(fucCheckNet, 1000*3)
+			}
+		}.bind(this)
+		fucCheckNet()
+	}
+
+	fucCoCosgetMsg(e){
+		if (!e.data.data) {
+			return
+		}
+		let self =  this
+		if (self.node.getChildByName("Disconnect").active) {
+			GameInstInfo.getinstance().m_Disconnect =  false
+			if (self.node.getChildByName("Disconnect")) {
+				self.node.getChildByName("Disconnect").active = false
+			}
+		}
+		
+		if (e.data.type == "userbalance") {
+			//这是获取用户余额
+			let lbCoin = self.downRoot.getChildByName('ndBet').getChildByName("coin").getChildByName("lbCoin")
+			self.m_GameStatus.mUserGold = Math.round(Number(e.data.data.Data.BackData))
+			if (GameInstInfo.getinstance().m_curr == "VND" ) {
+				lbCoin.getComponent(cc.Label).string = (self.m_GameStatus.mUserGold/100).toFixed(0)
+			}else{
+				lbCoin.getComponent(cc.Label).string = (self.m_GameStatus.mUserGold/100).toFixed(0)
+			}
+			self.m_ChipViewComponent.fucUpButStatus(self.m_GameStatus.mUserGold/100)
+			//这个地方要转最低起投
+			self.m_ChipViewComponent.fucUpButStatus(GameInstInfo.getinstance().fucGameChipTransition(self.m_GameStatus.mUserGold))
+		}
+		else if(e.data.type =="addbetting"){
+			self.fucPostMessage({type:"userbalance",param:{ method:"post",url:'userbalance',data:{}}})
+			if (e.data.data && e.data.data.status == "1") {
+				self.fucShowTips(GameEngine.m_services.i18nSrv.getI18nString("下注成功"),1.5)
+				self.fucUserMoneyAddPlayer()
+			}
+			else{
+				self.fucRevocation()
+				self.fucShowTips(GameEngine.m_services.i18nSrv.getI18nString("下注失败"),1.5)
+			}
+			self.m_wheeljetton = [0,0,0,0,0,0,0,0,0,0,0,0]
+		}
+		else if(e.data.type =="getrebate"){
+			//这是获取赔率
+			GameInstInfo.getinstance().m_GameRate = e.data.data.Data.item
+			self.fucSetRate()
+		}
+		else if(e.data.type =="getbetrecord"){
+			//这是获取投注记录
+			self.m_BettingRecordComponent.fucUpdata(e.data.data.Data1.item)
+		}
+
+		else if(e.data.type =="getbetrecord1"){
+			//这获取自己输赢  数据不及时  未启用
+			self.m_GameStatus.m_WinGold = 0
+			let inningCount = + (self.m_GameStatus.inningCount - 1)  
+			let  max =  0
+			for (let index = 0; index < e.data.data.Data1.item.length; index++) {
+				let pair = e.data.data.Data1.item[index].betting_issuseNo.slice(4)
+				if (inningCount == Number(pair) && e.data.data.Data1.item[index].Winning_amount) {
+					max += Number(e.data.data.Data1.item[index].Winning_amount)
+				}
+			}
+		}
+
+		//这是断线重连
+		else if(e.data.type == "NetworkException"){
+			//继续开当期奖
+			let bGetdata = false
+			let Item_data = e.data.data.Data.item[0]
+			for (let index = 0; index < e.data.data.Data.item.length; index++) {
+				Item_data = e.data.data.Data.item[index]
+				let pair = Item_data.IssueNo.slice(4)
+				if (self.m_GameStatus.inningCount == Number(pair)) {
+					bGetdata = true
+					//获取开奖结果
+					self.m_GameStatus.TouziPonits = Number(Item_data.LotteryOpen) -1
+				}
+			}
+			if (bGetdata) {
+				GameInstInfo.getinstance().m_GameSettlement = true
+				self.m_GameStatus.gameDownChipTime +=1  
+				
+				GameInstInfo.getinstance().fucschedule(self,self.fucCountdown)
+				self.m_RecordsComponent.fucInitData(e.data.data.Data.item)
+			}else{
+				GameInstInfo.getinstance().m_Disconnect =  true
+				self.node.getChildByName("Disconnect").active = true
+				GameInstInfo.getinstance().m_GameIsReconnection = true
+			}
+			
+		}
+
+	   //这是获取开奖记录  只能调用一次
+		else if(e.data.type == "lotteryopen1"){
+			//清理桌面
+			self.fucClear()  
+			//开局获取 设置时间
+			let n_Servertime  = e.data.data.Data.Servertime
+			let Item_data = e.data.data.Data.item[0]
+			//游戏局数
+			let pair = Item_data.IssueNo.slice(4)
+			self.m_GameStatus.inningCount = Number(pair) +1 
+			self.m_GamePlayLab.getComponent(cc.Label).string = ""+self.m_GameStatus.inningCount
+			self.m_GameStatus.gameDownChipTime = GameInstInfo.getinstance().getDownTime(n_Servertime,Item_data.UTC_TIME)  //获取倒计时
+
+			//如果时间少于10秒   加入断线重连效果
+			if (self.m_GameStatus.gameDownChipTime < gameConfig.Bet_Reward_Time) {
+				if (self.m_GameStatus.gamestatus == 1) {
+					let  a = [0,   1,  2,  3,  4,  5,  6,  7 , 8, 9 , 10, 11];
+					let  b = [0.1,0.7,0.7,0.1,0.2,0.7,0.7,0.2,0.2,0.2,0.2,0.2];
+					let count = Math.round( Math.random()*20)
+					let ChipNumber = [1,10,50,100,500,1000,5000,10000]
+					for (let index = 0; index < count; index++) {
+						self.fucReconnectBet(self.funcRandom(a,b),ChipNumber[Math.round(Math.random()*(ChipNumber.length-4))])
+					}
+				}
+			}
+			/**
+				@func 可设定间隔秒数、重复次数、延迟秒数的定时器; 如果回调刷新，将不会重复调度它，只会更新时间间隔参数
+				@param callback 必备参数，回调接口
+				@param interval 可选参数，时间间隔，以秒为单位，默认为0
+				@param repeat 可选参数，重复次数，会被执行(repeat+1)次，默认为macro.REPEAT_FOREVER表示无限重复
+				@param delay 可选参数，延迟时间，以秒为单位，默认为0表示立即调用
+			*/
+			// self.unschedule(self.fucCountdown)
+			// self.schedule(self.fucCountdown, 1.0, cc.macro.REPEAT_FOREVER, 1)
+			GameInstInfo.getinstance().fucschedule(self,self.fucCountdown)
+			self.m_RecordsComponent.fucInitData(e.data.data.Data.item)
+		}else if(e.data.type == "lotteryopen2"){   //确认下注时调用
+			let Item_data = e.data.data.Data.item[0]
+			//self.m_GameStatus.inningCount = Number(pair) +1 
+			let betnumber= ["12","1","41","2","Big","Small","4", "23","Odd","Even","34","3"]
+
+			let bettData = {betting_number:[],betting_money:[]}
+			for (let index = 0; index < self.m_wheeljetton.length; index++) {
+				if (self.m_wheeljetton[index] > 0) {
+					bettData.betting_money.push(self.m_wheeljetton[index])
+					bettData.betting_number.push(betnumber[index])
+				}
+			}
+			if (bettData.betting_number.length <= 0 || bettData.betting_number.length <=0) {
+				self.fucShowTips(GameEngine.m_services.i18nSrv.getI18nString("下注失败"),1.5)
+				return
+			}
+			let n_Data={
+				lottery_code: self.m_GameStatus.mlottery_code,
+				betting_number:bettData.betting_number,
+				betting_money: bettData.betting_money,
+				betting_count: 1,
+				play_detail_code: 1,
+				betting_issuseNo:Number(Item_data.IssueNo)+1,
+				type:"game"
+			}
+			self.fucPostMessage({type:"addbetting",param:{ method:"post",url:'addbetting',data:n_Data}})
+		}else if(e.data.type == "lotteryopen3"){
+				let n_Servertime  = e.data.data.Data.Servertime
+				let Item_data = e.data.data.Data.item[0]
+				let  max =  0
+				let pair  = null
+				for (let index = 0; index < e.data.data.Data.item.length; index++) {
+					pair = e.data.data.Data.item[index].IssueNo.slice(4)
+					if (max < Number(pair) ) {
+						max = Number(pair)
+						Item_data = e.data.data.Data.item[index]
+					}
+				}
+				//游戏局数
+				pair = Item_data.IssueNo.slice(4)
+				self.m_GameStatus.inningCount = Number(pair) +1 
+				self.m_GamePlayLab.getComponent(cc.Label).string = ""+self.m_GameStatus.inningCount
+				self.m_GameStatus.gameDownChipTime = GameInstInfo.getinstance().getDownTime(n_Servertime,Item_data.UTC_TIME) //获取倒计时
+				
+		}
+		else if(e.data.type == "EndWritedata"){
+			let Item_data = e.data.data.Data.item[0]
+			let  max =  0
+			let pair = null
+			for (let index = 0; index < e.data.data.Data.item.length; index++) {
+				pair = e.data.data.Data.item[index].IssueNo.slice(4)
+				if (max < Number(pair) ) {
+					max = Number(pair)
+					Item_data = e.data.data.Data.item[index]
+				}
+			}
+			//追加开奖结果  //断线重连不要再追加结果
+			if (GameInstInfo.getinstance().m_GameIsReconnection ) {
+				GameInstInfo.getinstance().m_GameIsReconnection = false
+			}else{
+				self.m_RecordsComponent.fucWiterData(Item_data)
+			}
+		}
+		else if(e.data.type == "lotteryopen5"){
+			let Item_data = e.data.data.Data.item
+			self.m_RecordVerComponent.fucUpView(Item_data)
+			//游戏局数
+			let  max =  0
+			let pair = null
+			for (let index = 0; index < e.data.data.Data.item.length; index++) {
+				pair = e.data.data.Data.item[index].IssueNo.slice(4)
+				if (max < Number(pair) ) {
+					max = Number(pair)
+					Item_data = e.data.data.Data.item[index]
+				}
+			}
+			pair = Item_data.IssueNo.slice(4)
+			self.m_GameStatus.inningCount = Number(pair) +1 
+		}else if(e.data.type == "lotteryopen6"){
+			GameInstInfo.getinstance().m_GameSettlement = true
+			let Item_data = e.data.data.Data.item[0]
+			let  max =  0
+			let pair = null
+			for (let index = 0; index < e.data.data.Data.item.length; index++) {
+				pair = e.data.data.Data.item[index].IssueNo.slice(4)
+				if (max < Number(pair) ) {
+					max = Number(pair)
+					Item_data = e.data.data.Data.item[index]
+				}
+			}
+
+			//游戏局数
+			pair = Item_data.IssueNo.slice(4)
+			//获取到了上一局的牌
+			if (self.m_GameStatus.inningCount - 1 == Number(pair)) {
+				GameInstInfo.getinstance().m_GameSettlement = false   
+			}
+			//获取开奖结果
+			self.m_GameStatus.TouziPonits = Number(Item_data.LotteryOpen) -1
+		}
+	}
+
+	//游戏消息处理
+	fucServerMessige(){
+		this.fucPostMessage({type:"getrebate",param:{method:"post",url:'getrebate',data:{LotteryType:this.m_LotteryType} } })
+		this.fucPostMessage({type:"userbalance",param:{method:"post",url:'userbalance',data:{} } });
+	}
+	
+	//多国语言适配Image
+	initChangeImage(){
+		let btnInning = this.upRoot.getChildByName('btnInning');  //左上角局数图片
+		GameInstInfo.getinstance().fucPublicImage(btnInning)
+
+		let table = this.upRoot.getChildByName('table');  //庄
+		GameInstInfo.getinstance().fucPublicImage(table)
+
+		table = this.node.getChildByName('middleRoot').getChildByName('Palyer_but').getChildByName('Background');  //在线玩家
+		GameInstInfo.getinstance().fucPublicImage(table)
+
+		let donwzhu = this.node.getChildByName('middleRoot').getChildByName("AllchipNum").getChildByName("desk_11");  //总下注
+		GameInstInfo.getinstance().fucPublicImage(donwzhu)
+
+		let but_Cancel = this.downRoot.getChildByName('ndBet').getChildByName('btnCancel').getChildByName('Background')
+		GameInstInfo.getinstance().fucPublicImage(but_Cancel)
+
+		let but_Sure = this.downRoot.getChildByName('ndBet').getChildByName('btnSure').getChildByName('Background')
+		GameInstInfo.getinstance().fucPublicImage(but_Sure)
+
+		// 12个下注区域
+		for (let index = 0; index < 12; index++) {
+			let sp = this.middleRoot.getChildByName('OddsTable').getChildByName('sp_'+(index+1)) 
+			GameInstInfo.getinstance().fucChangeImage(sp)
+		}
+		//动画替换
+		GameInstInfo.getinstance().fucChangeStartAnimation(this.m_AnimationComponent.Startspine)
+	}
+
+	initGame() {
+		//设置mlottery_code
+		GameInstInfo.getinstance().m_GameData.findIndex((elem: any) => {
+			if (elem[0] == "code") this.m_GameStatus.mlottery_code = Number(elem[1])
+		});
+
+		//启动游戏接口
+		this.fucPostMessage({type:"lotteryopen1",param:{method:"post",url:'lotteryopen',data:{LotteryCode:this.m_GameStatus.mlottery_code,Resource:"500"} } })
+		this.fucCheckMenoy()
+		this.fucUpMyAmount()
+	}
+
+	//动画控制器
+	initAction(){
+		this.m_AnimationComponent  = this.node.getChildByName("AnimtionNode").getComponent("AnimationControl_FT")
+		if (!GameInstInfo.getinstance().m_Disconnect) {
+			this.m_AnimationComponent.fucPlayStart(0)
+		}
+
+		this.m_GameStatusLab.getComponent(cc.Sprite).spriteFrame = this.m_SpriteFrame[0]
+		GameInstInfo.getinstance().fucPublicImage(this.m_GameStatusLab.node)
+	}
+
+	initUpRoot() {
+		let but_version = this.upRoot.getChildByName("btnInning")
+		but_version.on(cc.Node.EventType.TOUCH_END,function(event){
+			SoundMgr.palyButSound()
+			this.m_RecordVerComponent.fucShowNode()
+			this.fucPostMessage({type:"lotteryopen5",param:{ method:"post",url:'lotteryopen',data:{LotteryCode: this.m_GameStatus.mlottery_code,Resource:"500"} } })
+		}.bind(this),this)
+
+		let but_gameset = this.upRoot.getChildByName("btnSet")
+		but_gameset.on(cc.Node.EventType.TOUCH_END,function(event){
+			SoundMgr.palyButSound()
+			this.m_GameSetNode.active = true
+		}.bind(this),this)
+
+
+		this.m_GameSetNode =  cc.instantiate(this.m_settingprefab)
+		this.m_GameSetNode.active = false
+		this.node.getChildByName("tempNode").addChild(this.m_GameSetNode)
+		
+		this.m_GameSetNode.getComponent("gameSet").fucSetParent(this)
+		this.m_GameSetNode.getComponent("gameSet").fucSteCallback(function(index){
+			if (index == 2) {
+				this.m_GameStatus.gamechipshow = !this.m_GameStatus.gamechipshow
+				//刷新筹码界面
+				this.fucShowChip()
+			}
+			else if (index == 3) {
+				if (!this.m_GameExplainComponent) {
+					let self = this
+					cc.resources.load(GameInstInfo.getinstance().getSubgameByGameID(GameInstInfo.getinstance().m_SelectGameID).pathOfGameExplainPrefab, cc.Prefab, (err, prefab) => {
+						if (err) {
+							console.error('加载预制体失败:', err);
+							return;
+						}
+						if( !( prefab instanceof cc.Prefab ) ) { cc.log( 'Prefab error' ); return; } 
+						let instance = cc.instantiate(prefab);
+						self.node.addChild(instance);
+						self.m_GameExplainComponent =  instance.getComponent("GameExplain_FT")
+						self.m_GameExplainComponent.fucUpView()
+						
+					});   
+				}else{
+					this.node.getChildByName("nGameExplain").active = true
+					this.m_GameExplainComponent.fucUpView()
+				}
+			}
+			else if (index == 4) {
+				this.m_BettingRecordComponent.fucUpView()
+				this.fucPostMessage({type:"getbetrecord", param:{method:"post", url:'getbetrecord',data:{lottery_code:this.m_GameStatus.mlottery_code,LotteryType:this.m_LotteryType} } })
+			}
+		}.bind(this))
+
+
+		let btnBack = this.upRoot.getChildByName('btnBack');
+		btnBack.on(cc.Node.EventType.TOUCH_END,function() {
+			//cc.game.end()
+			window.parent.history.back()
+		},this)
+
+		//游戏局数
+		this.m_GamePlayLab.getComponent(cc.Label).string = ""+this.m_GameStatus.inningCount
+	}
+
+	//初始化撤销 确认
+	initDownRoot() {
+		this.m_ChipViewComponent = this.m_ChipView.getComponent('ChipControl')
+		//撤销
+		let but_Cancel = this.downRoot.getChildByName('ndBet').getChildByName('btnCancel')
+		but_Cancel.on(cc.Node.EventType.TOUCH_END,function(){
+			SoundMgr.palyButSound()
+			if (this.m_GameStatus.isBet) {
+				//这个地方请求自己金币变化
+				this.fucPostMessage({type:"userbalance",param:{ method:"post",url:'userbalance',data:{}}})
+				this.fucRevocation()
+			}
+		}.bind(this),this)
+
+		//确认下注
+		let but_Sure = this.downRoot.getChildByName('ndBet').getChildByName('btnSure')
+		but_Sure.off(cc.Node.EventType.TOUCH_END)
+		but_Sure.on(cc.Node.EventType.TOUCH_END,function(){
+
+			if(!this.downRoot.getChildByName('ndBet').getChildByName("btnSure").getComponent(cc.Button).enabled) return
+
+			SoundMgr.palyButSound()
+			for (let index = 0; index < this.m_DeskChip.length; index++) {
+				this.m_AllChipNode.push(this.m_DeskChip[index])
+			}
+			this.m_DeskChip = []
+			//发送下注消息
+			this.downRoot.getChildByName('ndBet').getChildByName("btnSure").getComponent(cc.Button).interactable = false
+			this.downRoot.getChildByName('ndBet').getChildByName("btnSure").getComponent(cc.Button).enabled = false
+			this.downRoot.getChildByName('ndBet').getChildByName("btnCancel").getComponent(cc.Button).interactable = false
+			//不能在进行下注
+			//this.m_GameStatus.isBet = false
+			this.m_GameStatus.betAllGold += this.m_GameStatus.betGold
+			this.fucPostMessage({type:"lotteryopen2", param: { method:"post", url:'lotteryopen',data:{LotteryCode: this.m_GameStatus.mlottery_code,Resource:"500"} } })
+		}.bind(this),this)
+
+	} 
+
+	//12个下注区域
+	initMiddleRoot(){
+		this.m_AllDonwButNode = []
+		for (let index = 0; index < 12; index++) {
+			let down_but = this.middleRoot.getChildByName('Down_'+(index+1))
+			down_but.on(cc.Node.EventType.TOUCH_END, (e: cc.Event.EventTouch) => {
+				if (this.checkBtnPolygonCollider(down_but,e)) {
+					this.fucPlaceBet(index)
+				}
+			}, this, true)
+
+			this.m_AllDonwButNode.push(down_but)
+		}
+
+		let Palyer_but = this.middleRoot.getChildByName('Palyer_but')
+		Palyer_but.on(cc.Node.EventType.TOUCH_END,function(){
+			SoundMgr.palyButSound()
+			if (!this.m_OnlinePlayerRankComponent) {
+				let m_OnlinePlayerprefab = cc.instantiate(this.m_OnlinePlayerprefab)
+				this.node.addChild(m_OnlinePlayerprefab)
+				this.m_OnlinePlayerRankComponent =  m_OnlinePlayerprefab.getComponent("OnlinePlayerRank")
+			}
+			this.node.getChildByName("nOnlinePlayerRank").active = true
+			this.m_OnlinePlayerRankComponent.fucUpView()
+		}.bind(this),this)
+		this.fucUpOnlinePlayer()
+	}
+
+	
+	//不规则区域点击
+	checkBtnPolygonCollider(btn: cc.Node, e: cc.Event.EventTouch) {
+        let collider = btn.getComponent(cc.PolygonCollider);
+        let points = collider.points;
+        let local = btn.convertToNodeSpaceAR(e.getLocation());
+        let bHit = cc.Intersection.pointInPolygon(local, points);
+        return bHit;
+    }
+
+	fucUpOnlinePlayer(){
+		this.middleRoot.getChildByName('Palyer_but').runAction(cc.repeatForever(cc.sequence(cc.delayTime(1.0),cc.callFunc(()=>{
+			this.middleRoot.getChildByName('Palyer_but').getChildByName('count_Label').getComponent(cc.Label).string = `(${GameInstInfo.getinstance().fucgetOnLinePlayer()})`
+		}))))
+	}
+
+	//不规则区域下注	
+	fucPolygonCollider(btn: cc.Node,nchip: cc.Node) {
+		let collider = btn.getComponent(cc.PolygonCollider);
+		let points = collider.points;
+		let posSize = btn.getContentSize()
+		let posx =   nchip.getContentSize().width/2 + Math.random()*(posSize.width - nchip.getContentSize().width)  - posSize.width/2
+		let posy =   nchip.getContentSize().height/2 + Math.random()*(posSize.height - nchip.getContentSize().height)  - posSize.height/2
+		let bHit = cc.Intersection.pointInPolygon(cc.v2(posx,posy), points);
+		while(!bHit){
+			posx = nchip.getContentSize().width/2 + Math.random()*(posSize.width- nchip.getContentSize().width)  - posSize.width/2
+			posy = nchip.getContentSize().height/2 + Math.random()*(posSize.height-nchip.getContentSize().height)  - posSize.height/2
+			bHit = cc.Intersection.pointInPolygon(cc.v2(posx,posy), points);
+		}
+		return  cc.v2(btn.x + posx, btn.y + posy);
+	}
+
+
+	//初始化脚本
+	initComponent(){
+		//初始化开将记录
+		this.m_RecordsComponent =  this.node.getChildByName("nRecordLayout").getComponent("RecordLayout_FT")
+		//初始化历史记录
+		this.m_RecordVerComponent=  this.node.getChildByName("nRecordRank").getComponent("RecordRank_FT")
+		this.m_RecordVerComponent.m_parent = this
+
+		this.m_BettingRecordComponent =  this.node.getChildByName("nBettingRecord").getComponent("BettingRecord_FT")
+		//this.m_GameExplainComponent =  this.node.getChildByName("nGameExplain").getComponent("GameExplain_FT")
+	}
+
+	//进行下注
+	fucPlaceBet(index){
+		if (this.m_GameStatus.gamestatus == 2  ||  this.m_GameStatus.isBet == false) {
+			this.fucShowTips(GameEngine.m_services.i18nSrv.getI18nString("客官莫急"))
+			return
+		}
+
+		if (this.m_GameStatus.gamestatus == 1  &&  this.m_GameStatus.isFenPan) {
+			this.fucShowTips(GameEngine.m_services.i18nSrv.getI18nString("封盘时间"))
+			return
+		}
+		this.downRoot.getChildByName('ndBet').getChildByName("btnSure").getComponent(cc.Button).interactable = true
+		this.downRoot.getChildByName('ndBet').getChildByName("btnSure").getComponent(cc.Button).enabled = true
+		this.downRoot.getChildByName('ndBet').getChildByName("btnCancel").getComponent(cc.Button).interactable = true
+		//下注大小
+		let nChipNumber = this.m_ChipViewComponent.n_ChipNumber[this.m_ChipViewComponent.m_SelectIndex]
+		//判断是否可以下注  自己的
+		let n_count = GameInstInfo.getinstance().fucGameTouzhuTransition(nChipNumber,true) //元
+		if (n_count  >  this.m_GameStatus.mUserGold || this.m_GameStatus.mUserGold <=0) {
+			this.fucShowTips(GameEngine.m_services.i18nSrv.getI18nString("余额不足"))
+			return
+		}
+		//计算下注
+		n_count = GameInstInfo.getinstance().fucGameTouzhuTransition(nChipNumber,false) //分
+		this.m_GameStatus.mUserGold -= n_count *100 //分转元
+		this.m_jetton[index]  += n_count
+		this.m_wheeljetton[index] += n_count
+
+		//这个地方要转最低起投
+		this.m_ChipViewComponent.fucUpButStatus(GameInstInfo.getinstance().fucGameChipTransition(this.m_GameStatus.mUserGold))
+
+		//金币做相应扣除
+		this.m_GameStatus.betGold += nChipNumber
+		let nchip =this.createEnemy()// cc.instantiate(this.nChipMode)  
+		let nchipComponent = nchip.getComponent('ChipNode')
+		nchipComponent.fucSetNumber(nChipNumber)
+
+		let n_parent = this.m_AllDonwButNode[index]
+		nchip.active = true
+		nchip.setPosition(cc.v2(0,-400))
+		//this.middleRoot.addChild(nchip)
+		this.middleRoot.getChildByName('ChipNode').addChild(nchip)
+		//随机位置 
+		let posSize = n_parent.getContentSize()
+		let posx = n_parent.x  - posSize.width/2 + Math.random()*(posSize.width-nchip.getContentSize().width/2)
+		let posy = n_parent.y  - posSize.height/2 + nchip.getContentSize().height/2 + Math.random()*(posSize.height-nchip.getContentSize().height/2)
+
+		let pos = this.fucPolygonCollider(n_parent,nchip)
+		posx = pos.x
+		posy = pos.y
+
+		let n_Time =0.2 + GameInstInfo.getinstance().fucDistance(nchip.getPosition(),new cc.Vec2(posx,posy))/1500
+		nchip.stopAllActions()
+		nchip.runAction(cc.sequence(cc.show(),cc.moveTo(n_Time,cc.v2(posx,posy)).easing(cc.easeCubicActionOut()),cc.callFunc(()=>{
+			SoundMgr.palyChipSound()
+		})))
+		//保存自己下注
+		this.m_DeskChip.push(nchip)
+		
+		this.fucUpMyAmount()
+		this.fucShowChip()
+
+		let lbCoin = this.downRoot.getChildByName('ndBet').getChildByName("coin").getChildByName("lbCoin")
+		lbCoin.getComponent(cc.Label).string = (this.m_GameStatus.mUserGold/100).toFixed(0)
+
+		if (GameInstInfo.getinstance().m_curr == "VND" ) {
+			lbCoin.getComponent(cc.Label).string = (this.m_GameStatus.mUserGold/100).toFixed(0)
+		}
+	}
+
+	//撤销
+	fucRevocation(){
+		//金币做相应增加
+		for (let index = 0; index < this.m_DeskChip.length; index++) {
+			let chipNode = this.m_DeskChip[index];
+			chipNode.runAction(cc.sequence(cc.moveTo(0.5,cc.v2(this.middleRoot.getChildByName('TagerPos').getPosition())),cc.callFunc(()=>{
+				chipNode.removeFromParent(true)
+				if (index == this.m_DeskChip.length-1) {
+					this.m_DeskChip = []
+				}
+			})))
+		}
+
+		let n_count= 0
+		for (let index = 0; index < this.m_wheeljetton.length; index++) {
+			n_count += this.m_wheeljetton[index];
+		}
+		if (n_count)SoundMgr.palyMoveChipSound()
+		
+
+		for (let index = 0; index < this.m_wheeljetton.length; index++) {
+			//分单位转换
+			this.m_jetton[index] -= this.m_wheeljetton[index]
+		}
+		
+		this.m_wheeljetton= [0,0,0,0,0,0,0,0,0,0,0,0]
+
+		this.fucUpMyAmount()
+		this.m_GameStatus.betGold = 0
+		this.downRoot.getChildByName('ndBet').getChildByName("btnSure").getComponent(cc.Button).interactable = false
+		this.downRoot.getChildByName('ndBet').getChildByName("btnSure").getComponent(cc.Button).enabled  = false
+		this.downRoot.getChildByName('ndBet').getChildByName("btnCancel").getComponent(cc.Button).interactable = false
+	}
+
+	fucUpMyAmount(){
+		function toThousands(num) {
+			return (num || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
+		}
+		for (let index = 0; index < this.m_AllDonwButNode.length; index++) {
+			let str_lab =  this.m_AllDonwButNode[index].getChildByName('userchipbg').getChildByName('str_Label')
+			str_lab.getComponent(cc.Label).string = toThousands(this.m_jetton[index])
+
+			if(this.m_jetton[index] > 1000){
+				str_lab.getComponent(cc.Label).string = toThousands(this.m_jetton[index]/1000) + "k"
+			}
+
+			this.m_AllDonwButNode[index].getChildByName('userchipbg').active = this.m_jetton[index] > 0 ? true : false
+		}
+	}
+
+	funcRandom(arr1, arr2) {
+		let sum = 0,
+		  factor = 0,
+		  random = Math.random();
+	  
+		for(let i = arr2.length - 1; i >= 0; i--) {
+		  sum += arr2[i]; // 统计概率总和
+		};
+		random *= sum; // 生成概率随机数
+		for(let i = arr2.length - 1; i >= 0; i--) {
+		  factor += arr2[i];
+		  if(random <= factor) 
+		   return arr1[i];
+		};
+		return null;
+	}
+
+	//玩家下注
+	fucUserPlaceBet(index,_number){
+		let nchip =this.createEnemy()// cc.instantiate(this.nChipMode)
+		//下注大小
+		let nchipComponent = nchip.getComponent('ChipNode')
+		nchipComponent.fucSetNumber(_number)
+		
+		this.fucUpDeskChipCount()
+		
+		if (GameInstInfo.getinstance().m_curr == "VND" ) {
+			this.m_GameStatus.betAllGold += _number*1000  
+			this.m_GameStatus.betsectionGold[index]  += _number*1000
+		}else{
+			this.m_GameStatus.betAllGold += _number
+			this.m_GameStatus.betsectionGold[index] += _number
+		}
+
+		nchip.active = true
+		nchip.setPosition(this.middleRoot.getChildByName('Palyer_but').getPosition())
+		//this.middleRoot.addChild(nchip)
+		this.middleRoot.getChildByName('ChipNode').addChild(nchip)
+		//随机位置 
+		let n_parent = this.m_AllDonwButNode[index]
+		let posSize = n_parent.getContentSize()
+		let posx = n_parent.x  - posSize.width/2  + Math.random()*(posSize.width-nchip.getContentSize().width/2)
+		let posy = n_parent.y  - posSize.height/2 + nchip.getContentSize().height/2 + Math.random()*(posSize.height-nchip.getContentSize().height/2)
+
+		let pos = this.fucPolygonCollider(n_parent,nchip)
+		posx = pos.x
+		posy = pos.y
+
+		let  self = this
+		let n_Time =0.2 +  GameInstInfo.getinstance().fucDistance(this.middleRoot.getChildByName('Palyer_but').getPosition(),new cc.Vec2(posx,posy))/1500
+		nchip.stopAllActions()
+		nchip.runAction(cc.sequence(cc.show(),cc.moveTo(n_Time,cc.v2(posx,posy)).easing(cc.easeCubicActionOut()),cc.callFunc(()=>{
+			SoundMgr.palyChipSound()
+			//这里统计下注额度
+			self.fucUpArerMoney(n_parent,self.m_GameStatus.betsectionGold[index])
+		})))
+
+		//保存其他玩家下注筹码
+		this.m_AllChipNode.push(nchip)
+		this.fucShowChip()
+	}
+
+	fucUserMoneyAddPlayer(){
+		for (let index = 0; index < this.m_wheeljetton.length; index++) {
+			this.m_GameStatus.betAllGold +=  this.m_wheeljetton[index];
+			this.m_GameStatus.betsectionGold[index] +=   this.m_wheeljetton[index];
+			//这里统计下注额度
+			this.fucUpArerMoney(this.m_AllDonwButNode[index],this.m_GameStatus.betsectionGold[index])
+		}
+		this.fucUpDeskChipCount()
+	}
+
+	//模拟断线重连玩家下注
+	fucReconnectBet(index,_number){
+		let nchip = this.createEnemy()
+		//下注大小
+		let nchipComponent = nchip.getComponent('ChipNode')
+		nchipComponent.fucSetNumber(_number)
+		this.m_GameStatus.betAllGold += _number
+		if (GameInstInfo.getinstance().m_curr == "VND" ) {
+			this.m_GameStatus.betAllGold += _number*1000  
+			this.m_GameStatus.betsectionGold[index]  += _number*1000
+		}else{
+			this.m_GameStatus.betAllGold += _number
+			this.m_GameStatus.betsectionGold[index] += _number
+		}
+
+		this.fucUpDeskChipCount()
+
+		nchip.active = true
+		nchip.setPosition(this.middleRoot.getChildByName('Palyer_but').getPosition())
+		
+		this.middleRoot.getChildByName('ChipNode').addChild(nchip)
+		//随机位置 
+		let n_parent = this.m_AllDonwButNode[index]
+		let posSize = n_parent.getContentSize()
+		let posx = n_parent.x  - posSize.width/2  + Math.random()*(posSize.width-nchip.getContentSize().width/2)
+		let posy = n_parent.y  - posSize.height/2 + nchip.getContentSize().height/2 + Math.random()*(posSize.height-nchip.getContentSize().height/2)
+
+		let pos = this.fucPolygonCollider(n_parent,nchip)
+		posx = pos.x
+		posy = pos.y
+
+		let  self = this
+		nchip.runAction(cc.sequence(cc.show(),cc.moveTo(0,cc.v2(posx,posy)),cc.callFunc(()=>{
+			//这里统计下注额度
+			self.fucUpArerMoney(n_parent,self.m_GameStatus.betsectionGold[index])
+		})))
+
+		//保存其他玩家下注筹码
+		this.m_AllChipNode.push(nchip)
+		this.fucShowChip()
+	}
+
+	//是否显示筹码
+	fucShowChip(){
+		for (let index = 0; index < this.m_AllChipNode.length; index++) {
+			this.m_AllChipNode[index].opacity = this.m_GameStatus.gamechipshow ? 255 :0
+		}
+		for (let index = 0; index < this.m_DeskChip.length; index++) {
+			this.m_DeskChip[index].opacity = this.m_GameStatus.gamechipshow ? 255 :0
+		}
+	}
+
+	//刷新总下注额度
+	fucUpDeskChipCount(){
+		function toThousands(num) {
+			return (num || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
+		}
+		
+		if ( GameInstInfo.getinstance().m_curr == "VND") {
+			this.nAllChipLab.string = `<color=#F0FF00>${toThousands(this.m_GameStatus.betAllGold/1000) }K</color>`
+		}else{
+			this.nAllChipLab.string = `<color=#F0FF00>${toThousands(this.m_GameStatus.betAllGold) }</color>`
+		}
+	}
+
+	//自己下注后 加入总额
+	fucUpArerMoney(node:cc.Node,money:any){
+		function toThousands(num) {
+			return (num || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
+		}
+		let str_AllLab = node.getChildByName("allchipbg").getChildByName("str_AllLab") 
+		str_AllLab.getComponent(cc.Label).string =""+toThousands(money)
+		if (GameInstInfo.getinstance().m_curr == "VND" ) {
+			str_AllLab.getComponent(cc.Label).string = ""+(money/1000) +"K"
+		}
+		node.getChildByName("allchipbg").active = money > 0 ? true:false
+	}
+
+	//游戏流程  前端自己跑
+	fucCountdown(){
+		this.m_GameStatus.gameDownChipTime -= 1
+		if (this.m_GameStatus.gamestatus == 1) {
+			if (this.m_GameStatus.gameDownChipTime == 4) {
+				this.m_AnimationComponent.fucPlayStart(2)
+				this.m_GameStatus.isFenPan = true
+			}
+			if(this.m_GameStatus.gameDownChipTime <= 1){
+				this.downRoot.getChildByName('ndBet').getChildByName("btnSure").getComponent(cc.Button).interactable = false
+				this.downRoot.getChildByName('ndBet').getChildByName("btnSure").getComponent(cc.Button).enabled = false
+				this.downRoot.getChildByName('ndBet').getChildByName("btnCancel").getComponent(cc.Button).interactable = false
+			}
+	
+			if (this.m_GameStatus.gameDownChipTime <= 0 ) {
+				this.m_GameStatus.gamestatus = 2
+				this.m_GameStatus.gameDownChipTime = gameConfig.Bet_Reward_Time
+				//自己没有下注的退回
+				if (this.m_GameStatus.isBet) {
+					this.fucPostMessage({type:"userbalance",param:{ method:"post",url:'userbalance',data:{}}})
+					this.fucRevocation()
+				}
+				this.m_GameStatusLab.getComponent(cc.Sprite).spriteFrame = this.m_SpriteFrame[1]
+				GameInstInfo.getinstance().fucPublicImage(this.m_GameStatusLab.node)
+				this.m_ChipViewComponent.fucUpChipType(false)  
+				this.m_GameStatus.isBet = false
+				this.fucPostMessage({type:"lotteryopen6",param:{ method:"post",url:'lotteryopen',data:{LotteryCode: this.m_GameStatus.mlottery_code,Resource:"500"} } },)
+			}
+
+			if (this.m_GameStatus.gameDownChipTime == 3) {
+				SoundMgr.palystopSound()
+				this.m_AnimationComponent.fucPlayStart(1)
+			}
+
+			//模拟玩家下注
+			if (this.m_GameStatus.gameDownChipTime > 3 && this.m_GameStatus.gamestatus == 1) {
+				let  a = [0,   1,  2,  3,  4,  5,  6,  7 , 8, 9, 10, 11];
+				let  b = [0.1,0.7,0.7,0.1,0.2,0.7,0.7,0.2,0.2,0.2,0.2,0.2];
+				let count = 2 + Math.round( Math.random()*15)
+				let ChipNumber = [1,10,50,100,500,1000,5000,10000]
+				let n_DeleyTiame=  0
+				for (let index = 0; index < count; index++) {
+					n_DeleyTiame=  Math.random()*1
+					this.node.runAction(cc.sequence(cc.delayTime(n_DeleyTiame),cc.callFunc(()=>{	
+						this.fucUserPlaceBet(this.funcRandom(a,b),ChipNumber[Math.round(Math.random()*(ChipNumber.length-1))])
+					})))
+				}
+			}
+			if (this.m_GameStatus.gameDownChipTime <= 4 && this.m_GameStatus.gameDownChipTime >1){
+				SoundMgr.palycountdownSound()
+			}
+		}
+		//
+		if (this.m_GameStatus.gamestatus == 2) {
+			if (this.m_GameStatus.gameDownChipTime >=  13 && !GameInstInfo.getinstance().m_GameSettlement) {
+				this.fucPostMessage({type:"lotteryopen6",param:{ method:"post",url:'lotteryopen',data:{LotteryCode: this.m_GameStatus.mlottery_code,Resource:"500"} } },)
+			}
+			//新游戏
+			if (this.m_GameStatus.gameDownChipTime <= 0 ) {
+				this.m_GameStatus.gamestatus = 1
+				this.m_GameStatus.gameDownChipTime = 15
+				this.fucClear()
+				this.m_GameStatusLab.getComponent(cc.Sprite).spriteFrame = this.m_SpriteFrame[0]
+				GameInstInfo.getinstance().fucPublicImage(this.m_GameStatusLab.node)
+				this.m_ChipViewComponent.fucUpChipType(true)  
+				//局数
+				this.fucPostMessage({type:"lotteryopen3", param:{method:"post",url:'lotteryopen',data:{LotteryCode:this.m_GameStatus.mlottery_code,Resource:"500"} } })
+			}
+			if (this.m_GameStatus.gameDownChipTime == 12) {
+				//未获取到了游戏数据
+				if (!GameInstInfo.getinstance().m_GameSettlement) {
+					this.fucGameDisconnect()
+					return
+				}
+				//开牌
+				this.fucCardsOpen()
+			}
+			if (this.m_GameStatus.gameDownChipTime == 1) {
+				this.m_AnimationComponent.fucPlayStart(0)
+				SoundMgr.palystartSound()
+				//这个地方请求自己金币变化
+				this.fucPostMessage({type:"userbalance",param:{ method:"post",url:'userbalance',data:{}}})
+			}
+		}
+		//刷新倒计时
+		let nBettStatus = this.upRoot.getChildByName('ndTime')
+		let n_Labtime = nBettStatus.getChildByName('lbTime')
+		n_Labtime.getComponent(cc.Label).string = "" + this.m_GameStatus.gameDownChipTime
+	}
+
+	//游戏结果
+	fucCardsOpen(){
+		this.m_AnimationComponent.fucPlayOpen(this.m_GameStatus.TouziPonits,function(index){
+			//动画播放完成
+			this.fucGameEnd()
+			this.fucGameEndAction()
+			//SoundMgr.palyPoitSound(index)
+			this.fucPostMessage({type:"EndWritedata", param:{method:"post",url:'lotteryopen',data:{LotteryCode:this.m_GameStatus.mlottery_code,Resource:"500"} } })
+		}.bind(this),true)
+	}
+
+	//设置倍率   12个赔率
+	fucSetRate(){
+		 let Orderodds = [[0, 2,  7 , 10],
+						  [1 , 3 , 6 , 11],
+						  [4 , 5],
+						  [4 , 5]]
+		for (let index = 0; index < Orderodds.length; index++) {
+			for (let z = 0; z < Orderodds[index].length; z++) {
+				let element = Orderodds[index][z];
+				let str_Rate_lab = this.middleRoot.getChildByName('OddsTable').getChildByName("str_"+(element+1))
+				GameInstInfo.getinstance().m_GameRate.findIndex((elem: any) => {
+					if ( Number(elem.PlayCode) == index+1){
+						str_Rate_lab.getComponent(cc.Label).string = `1:${Number(elem.Bonus) }`
+					}
+				});
+			}
+		}
+	}
+
+	//TouziPonits  判断中奖区域
+	fucGetWinTarget(){
+		//根据红的数目判断哪几个中奖0-4红
+		let n_result =[ [0, 1 ,2, 5, 8],    
+						[0, 3, 7, 5,  9],	 
+						[7, 11, 10, 4, 8],
+						[2, 6, 10, 4, 9]
+		]	 			
+		return n_result[this.m_GameStatus.TouziPonits]
+	}
+	
+	//游戏结束  组合中奖
+	//@param  
+	//@param  
+	//@param  
+	fucGameEnd(){
+		let b_MoveStart  = false
+		let n_ZhuangPosition  = this.upRoot.getPosition()
+		let self = this
+		let n_needMovechip = []
+		let n_result = this.fucGetWinTarget()
+		for (let index = 0; index < this.m_AllChipNode.length; index++) {
+			let  nchip = this.m_AllChipNode[index];
+			let b_collision = true
+			for (let j = 0; j < n_result.length; j++) {
+				let n_parent:cc.Node = this.m_AllDonwButNode[n_result[j]];
+				let posSize = n_parent.getContentSize()
+				//不需要移动的筹码
+				if (nchip.x > n_parent.x  - posSize.width/2   && nchip.x < n_parent.x  + posSize.width/2  &&
+					nchip.y > n_parent.y  - posSize.height/2  && nchip.y < n_parent.y  + posSize.height/2) {
+					b_collision = false
+				}
+			}
+			if (b_collision) {
+				n_needMovechip.push(nchip)
+			}
+		}
+
+		for (let index = 0; index < n_needMovechip.length; index++) {
+			let  nchip = n_needMovechip[index];
+			//需要先到庄   显示 再到赢   再到玩家
+			let delaytime  = 0.1 + Math.random()*0.2
+			nchip.stopAllActions()
+			nchip.runAction(cc.sequence(cc.delayTime(delaytime),cc.callFunc(()=>{
+				//播放音效  只播放一次
+				if (!b_MoveStart) {
+					SoundMgr.palyMoveChipSound()
+					b_MoveStart = true
+				}
+			}),cc.moveTo(0.5,cc.v2(0,n_ZhuangPosition.y)),cc.hide(),cc.callFunc(()=>{
+				if (index == n_needMovechip.length-1) {
+					let n_HiddenRatio  = 0.4  //庄家扣除率
+					let needMovechi = []
+					for (let index = 0; index < n_needMovechip.length *(1-n_HiddenRatio); index++) {
+						let element = n_needMovechip[index];
+						needMovechi.push(element)
+					}
+					self.fucMoveChipDesk(needMovechi)
+				}
+			})))
+		}
+	}
+
+	//庄家扣除后均分
+	fucMoveChipDesk(n_needMovechip){
+		let b_MoveStart1  = false
+		let n_result = this.fucGetWinTarget()
+		let middleIndex = Math.ceil(n_needMovechip.length  / n_result.length); 
+		let z_parentpos  = 0
+		let n_parent:cc.Node = this.m_AllDonwButNode[n_result[z_parentpos]];
+		for (let index = 0; index < n_needMovechip.length; index++) {
+			let  nchip = n_needMovechip[index];
+			//需要移动的筹码按结果均分 
+			if (index  >= middleIndex) {
+				middleIndex  += Math.ceil(n_needMovechip.length  / n_result.length)
+				z_parentpos += 1
+				n_parent = this.m_AllDonwButNode[n_result[z_parentpos]];
+			}
+			let posSize = n_parent.getContentSize()
+			let posx = n_parent.x  - posSize.width/2  + Math.random()*(posSize.width-nchip.getContentSize().width/2)
+			let posy = n_parent.y  - posSize.height/2 + nchip.getContentSize().height/2 + Math.random()*(posSize.height-nchip.getContentSize().height/2)
+
+			let pos = this.fucPolygonCollider(n_parent,nchip)
+			posx = pos.x
+			posy = pos.y
+
+			nchip.runAction(cc.sequence(cc.delayTime(0.5),cc.show(),cc.callFunc(()=>{
+				//播放音效  只播放一次
+				if (!b_MoveStart1) {
+					SoundMgr.palyMoveChipSound()
+					b_MoveStart1 = true
+				}
+			}), cc.moveTo(0.5,cc.v2(posx,posy)),cc.delayTime(0.3),cc.callFunc(()=>{
+				this.fucMoveAllChip()
+			})))
+		}
+	}
+
+	fucPlayerWinNumber(){
+		if (this.m_GameStatus.gameisfinish) {
+			return
+		}
+		this.m_GameStatus.gameisfinish = true
+		function fucMoveAction(Target:any,_count:number,angle:number,pos:cc.Vec3,TargetPos:cc.Vec2){
+			let winLab =new cc.Node("winLab");
+			let label=winLab.addComponent(cc.Label);
+			label.string="+ "+_count
+
+			if (GameInstInfo.getinstance().m_curr == "VND" ) {
+				label.string="+ "+ (_count/1000) + "k"
+			}
+			label.fontSize  = 40
+			let color=new cc.Color(255,255,255);
+			winLab.position=pos;
+			winLab.color=color;
+			Target.addChild(winLab)
+			winLab.angle = angle;
+			winLab.runAction(cc.sequence(cc.moveBy(1.5,TargetPos),cc.removeSelf()))
+		}
+		//玩家自己
+		let myWin = 0
+		let dtp = ['cdp6','cdp4','cdp3','cdp5','cdp7','cdp2','cdp1','cdp8']
+		let result = this.fucGetWinTarget()
+		for (let index = 0; index < result.length; index++) {
+			let element = result[index];
+			GameInstInfo.getinstance().m_GameRate.findIndex((elem: any) => {
+				if (elem.PlayCode == dtp[element]){
+					myWin += this.m_jetton[element] * (Number(elem.Bonus)/2)
+				}
+			});
+		}
+
+		let winAction = this.downRoot.getChildByName('ndBet').getChildByName("coin").getChildByName("lbCoin")
+		fucMoveAction(winAction,myWin,0,new cc.Vec3(0,20,1),cc.v2(0,50))
+		//在线玩家
+		let win = Math.round(Math.random()*(this.m_GameStatus.betAllGold/3))
+		let Palyer =this.middleRoot.getChildByName('Palyer_but')
+		fucMoveAction(Palyer,win,0,new cc.Vec3(0,20,1),cc.v2(0,50))
+	}
+
+	//@param  赢数目
+	fucMoveAllChip(){
+		if (this.m_GameStatus.gameisMoveAllChip) {
+			return
+		}
+		this.m_AnimationComponent.fucPlayOpen(this.m_GameStatus.TouziPonits,function(index){
+			//动画播放完成
+			
+		}.bind(this),false)
+
+		let WinNum = 0
+		let reparation = [15.84,1.98,1.98,15.84,15.84,1.98,1.98,15.84]
+		let n_result = this.fucGetWinTarget()
+		for (let index = 0; index < n_result.length; index++) {
+			let element = n_result[index];
+			WinNum += this.m_jetton[element]* reparation[element]
+		}
+		
+		let b_MoveStart = false
+		this.m_GameStatus.gameisMoveAllChip = true
+		for (let index = this.m_AllChipNode.length-1 ; index >=0; index--) {
+			let  nchip = this.m_AllChipNode[index];
+			let n_Tagposx = this.middleRoot.getChildByName('Palyer_but').getPosition()  
+		
+			let delaytime  = 0.2 + Math.random()*0.4
+			if (index > this.m_AllChipNode.length -10  && WinNum > 0 ) {
+				n_Tagposx = this.middleRoot.getChildByName('TagerPos').getPosition() 
+				delaytime  = 0.1 + Math.random()*0.2
+			}
+			nchip.runAction(cc.sequence(cc.delayTime(delaytime),cc.moveTo(0.5,cc.v2(n_Tagposx.x,n_Tagposx.y)),cc.hide(),cc.callFunc(()=>{
+				if (!b_MoveStart) {
+					SoundMgr.palyMoveChipSound()
+					b_MoveStart = true
+				}
+				this.fucPlayerWinNumber()
+			}),cc.delayTime(0.2),cc.callFunc(()=>{
+				if (index == 0) {
+					this.fucClear()
+				}
+			})))
+		}
+	}
+
+	//游戏结束  动画控制
+	fucGameEndAction(){
+		let n_result = this.fucGetWinTarget()
+		for (let index = 0; index < n_result.length; index++) {
+			let n_parent =this.m_AllDonwButNode[n_result[index]]
+			//显示亮底
+			let desk_Hight = n_parent.getChildByName('desk_Hight')
+			desk_Hight.active = true
+			desk_Hight.runAction(cc.blink(3,10))
+		}
+	}
+
+	//游戏结束清理桌面
+	fucClear(){
+		for (let index = 0; index < this.m_AllChipNode.length; index++) {
+			this.onEnemyKilled(this.m_AllChipNode[index])
+		}
+		this.m_AllChipNode= []
+		//隐藏亮底
+		function ClearStatus(n_parent) {
+			let desk_Hight = n_parent.getChildByName('desk_Hight')
+			desk_Hight.stopAllActions()
+			desk_Hight.active = false
+			let str_AllLab = n_parent.getChildByName("allchipbg").getChildByName("str_AllLab")
+			str_AllLab.getComponent(cc.Label).string ="0"
+			str_AllLab.parent.active = false
+		}
+
+		for (let index = 0; index < this.m_AllDonwButNode.length; index++) {
+			let element = this.m_AllDonwButNode[index];
+			ClearStatus(element)
+			
+		}
+	
+		this.m_GameStatus.betGold = 0
+		this.fucUpDeskChipCount()
+
+		this.downRoot.getChildByName('ndBet').getChildByName("btnSure").getComponent(cc.Button).interactable = false
+		this.downRoot.getChildByName('ndBet').getChildByName("btnSure").getComponent(cc.Button).enabled = false
+		this.downRoot.getChildByName('ndBet').getChildByName("btnCancel").getComponent(cc.Button).interactable = false
+
+		this.m_GameStatus.isBet = true
+		this.m_GameStatus.isFenPan = false
+		this.m_GameStatus.gameisfinish = false
+		this.m_GameStatus.gameisMoveAllChip = false
+		this.m_GameStatus.betAllGold = 0
+		this.m_GameStatus.betsectionGold=[0,0,0,0,0,0,0,0,0,0,0,0]
+
+		this.m_jetton= [0,0,0,0,0,0,0,0,0,0,0,0]
+		this.m_wheeljetton= [0,0,0,0,0,0,0,0,0,0,0,0]
+		this.fucUpMyAmount()
+	
+
+		GameInstInfo.getinstance().m_GameSettlement = false  //没局结束重置是否获取到游戏数据
+	}
+
+	fucCheckMenoy(){
+		this.fucPostMessage({type:"userbalance",param:{ method:"post",url:'userbalance',data:{}}})
+	}
+
+	fucShowTips(_str,_time = 1.0){
+		let str = this.m_GameTipsNode.getChildByName("strLabel")
+		str.getComponent(cc.Label).string = _str
+		this.m_GameTipsNode.stopAllActions()
+		this.m_GameTipsNode.active =true
+		this.m_GameTipsNode.runAction(cc.sequence(cc.show(),cc.delayTime(_time),cc.hide()))
+	}
+}

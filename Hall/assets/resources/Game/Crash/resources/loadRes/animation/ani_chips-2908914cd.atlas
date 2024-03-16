@@ -1,0 +1,83 @@
+
+ani_chips-2908914cd.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+l_1
+  rotate: false
+  xy: 129, 86
+  size: 37, 24
+  orig: 37, 24
+  offset: 0, 0
+  index: -1
+l_2
+  rotate: false
+  xy: 49, 9
+  size: 36, 25
+  orig: 36, 25
+  offset: 0, 0
+  index: -1
+l_3
+  rotate: false
+  xy: 83, 52
+  size: 38, 24
+  orig: 38, 24
+  offset: 0, 0
+  index: -1
+l_4
+  rotate: false
+  xy: 83, 78
+  size: 44, 32
+  orig: 44, 32
+  offset: 0, 0
+  index: -1
+light
+  rotate: false
+  xy: 2, 36
+  size: 79, 74
+  orig: 79, 74
+  offset: 0, 0
+  index: -1
+r_1
+  rotate: false
+  xy: 168, 86
+  size: 37, 24
+  orig: 37, 24
+  offset: 0, 0
+  index: -1
+r_2
+  rotate: true
+  xy: 87, 14
+  size: 36, 25
+  orig: 36, 25
+  offset: 0, 0
+  index: -1
+r_3
+  rotate: true
+  xy: 114, 14
+  size: 36, 24
+  orig: 36, 24
+  offset: 0, 0
+  index: -1
+r_4
+  rotate: false
+  xy: 207, 86
+  size: 37, 24
+  orig: 37, 24
+  offset: 0, 0
+  index: -1
+r_5
+  rotate: false
+  xy: 123, 52
+  size: 36, 24
+  orig: 36, 24
+  offset: 0, 0
+  index: -1
+r_6
+  rotate: false
+  xy: 2, 2
+  size: 45, 32
+  orig: 45, 32
+  offset: 0, 0
+  index: -1

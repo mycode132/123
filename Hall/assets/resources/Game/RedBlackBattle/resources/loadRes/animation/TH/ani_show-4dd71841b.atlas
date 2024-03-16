@@ -1,0 +1,83 @@
+
+ani_show-4dd71841b.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+img_show_01
+  rotate: false
+  xy: 578, 188
+  size: 288, 56
+  orig: 288, 56
+  offset: 0, 0
+  index: -1
+img_show_02
+  rotate: false
+  xy: 2, 118
+  size: 288, 56
+  orig: 288, 56
+  offset: 0, 0
+  index: -1
+img_show_03
+  rotate: false
+  xy: 2, 60
+  size: 288, 56
+  orig: 288, 56
+  offset: 0, 0
+  index: -1
+img_show_04
+  rotate: false
+  xy: 2, 2
+  size: 288, 56
+  orig: 288, 56
+  offset: 0, 0
+  index: -1
+img_show_05
+  rotate: false
+  xy: 292, 130
+  size: 288, 56
+  orig: 288, 56
+  offset: 0, 0
+  index: -1
+img_show_06
+  rotate: false
+  xy: 292, 72
+  size: 288, 56
+  orig: 288, 56
+  offset: 0, 0
+  index: -1
+img_show_07
+  rotate: false
+  xy: 292, 14
+  size: 288, 56
+  orig: 288, 56
+  offset: 0, 0
+  index: -1
+img_show_08
+  rotate: false
+  xy: 582, 130
+  size: 288, 56
+  orig: 288, 56
+  offset: 0, 0
+  index: -1
+img_show_09
+  rotate: false
+  xy: 582, 72
+  size: 288, 56
+  orig: 288, 56
+  offset: 0, 0
+  index: -1
+img_show_10
+  rotate: false
+  xy: 288, 188
+  size: 288, 56
+  orig: 288, 56
+  offset: 0, 0
+  index: -1
+img_show_bg
+  rotate: false
+  xy: 2, 176
+  size: 284, 68
+  orig: 284, 68
+  offset: 0, 0
+  index: -1

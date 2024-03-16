@@ -1,0 +1,160 @@
+
+ani_dicecup-4c7af53ab.png
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ani_dice_01
+  rotate: true
+  xy: 571, 2
+  size: 170, 118
+  orig: 170, 118
+  offset: 0, 0
+  index: -1
+ani_dice_16
+  rotate: true
+  xy: 571, 2
+  size: 170, 118
+  orig: 170, 118
+  offset: 0, 0
+  index: -1
+ani_dice_02
+  rotate: false
+  xy: 922, 240
+  size: 68, 67
+  orig: 68, 67
+  offset: 0, 0
+  index: -1
+ani_dice_03
+  rotate: false
+  xy: 850, 242
+  size: 70, 65
+  orig: 70, 65
+  offset: 0, 0
+  index: -1
+ani_dice_04
+  rotate: false
+  xy: 405, 6
+  size: 164, 166
+  orig: 164, 166
+  offset: 0, 0
+  index: -1
+ani_dice_05
+  rotate: true
+  xy: 691, 4
+  size: 195, 95
+  orig: 195, 95
+  offset: 0, 0
+  index: -1
+ani_dice_06
+  rotate: false
+  xy: 850, 309
+  size: 194, 183
+  orig: 194, 183
+  offset: 0, 0
+  index: -1
+ani_dice_07
+  rotate: false
+  xy: 1430, 307
+  size: 185, 185
+  orig: 185, 185
+  offset: 0, 0
+  index: -1
+ani_dice_08
+  rotate: false
+  xy: 1617, 307
+  size: 184, 185
+  orig: 184, 185
+  offset: 0, 0
+  index: -1
+ani_dice_09
+  rotate: true
+  xy: 1046, 307
+  size: 185, 190
+  orig: 185, 190
+  offset: 0, 0
+  index: -1
+ani_dice_10
+  rotate: false
+  xy: 1238, 307
+  size: 190, 185
+  orig: 190, 185
+  offset: 0, 0
+  index: -1
+ani_dice_11
+  rotate: false
+  xy: 647, 301
+  size: 201, 191
+  orig: 201, 191
+  offset: 0, 0
+  index: -1
+ani_dice_12
+  rotate: false
+  xy: 647, 201
+  size: 200, 98
+  orig: 200, 98
+  offset: 0, 0
+  index: -1
+ani_dice_13
+  rotate: false
+  xy: 1803, 330
+  size: 155, 162
+  orig: 155, 162
+  offset: 0, 0
+  index: -1
+ani_dice_14
+  rotate: true
+  xy: 1883, 262
+  size: 66, 73
+  orig: 66, 73
+  offset: 0, 0
+  index: -1
+ani_dice_15
+  rotate: false
+  xy: 1960, 420
+  size: 75, 72
+  orig: 75, 72
+  offset: 0, 0
+  index: -1
+img_diceCup_down
+  rotate: false
+  xy: 2, 5
+  size: 401, 487
+  orig: 401, 487
+  offset: 0, 0
+  index: -1
+img_diceCup_top
+  rotate: false
+  xy: 405, 174
+  size: 240, 318
+  orig: 240, 318
+  offset: 0, 0
+  index: -1
+img_dice_2
+  rotate: false
+  xy: 788, 121
+  size: 67, 78
+  orig: 67, 78
+  offset: 0, 0
+  index: -1
+img_dice_4
+  rotate: false
+  xy: 1960, 340
+  size: 67, 78
+  orig: 67, 78
+  offset: 0, 0
+  index: -1
+img_dice_6
+  rotate: false
+  xy: 788, 41
+  size: 67, 78
+  orig: 67, 78
+  offset: 0, 0
+  index: -1
+img_dice_shadow
+  rotate: true
+  xy: 1803, 261
+  size: 67, 78
+  orig: 67, 78
+  offset: 0, 0
+  index: -1

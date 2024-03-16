@@ -1,0 +1,20 @@
+
+ani_bg-4784db17f.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+vfx_star1
+  rotate: false
+  xy: 2, 2
+  size: 74, 83
+  orig: 74, 83
+  offset: 0, 0
+  index: -1
+vfx_star2
+  rotate: false
+  xy: 78, 22
+  size: 57, 63
+  orig: 57, 63
+  offset: 0, 0
+  index: -1

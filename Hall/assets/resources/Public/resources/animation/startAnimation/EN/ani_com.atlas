@@ -1,0 +1,139 @@
+
+ani_com.png
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+djs_0
+  rotate: false
+  xy: 915, 235
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_1
+  rotate: false
+  xy: 440, 39
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_10
+  rotate: false
+  xy: 1028, 88
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_11
+  rotate: false
+  xy: 1175, 204
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_2
+  rotate: false
+  xy: 587, 39
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_3
+  rotate: false
+  xy: 1168, 351
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_4
+  rotate: false
+  xy: 1315, 351
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_5
+  rotate: false
+  xy: 1462, 351
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_6
+  rotate: false
+  xy: 1609, 351
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_7
+  rotate: false
+  xy: 1756, 351
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_8
+  rotate: false
+  xy: 734, 115
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+djs_9
+  rotate: false
+  xy: 881, 88
+  size: 145, 145
+  orig: 145, 145
+  offset: 0, 0
+  index: -1
+line_0
+  rotate: false
+  xy: 730, 262
+  size: 183, 118
+  orig: 183, 118
+  offset: 0, 0
+  index: -1
+num_1
+  rotate: true
+  xy: 2, 2
+  size: 66, 98
+  orig: 66, 98
+  offset: 0, 0
+  index: -1
+num_2
+  rotate: false
+  xy: 1903, 398
+  size: 66, 98
+  orig: 66, 98
+  offset: 0, 0
+  index: -1
+num_3
+  rotate: true
+  xy: 734, 47
+  size: 66, 98
+  orig: 66, 98
+  offset: 0, 0
+  index: -1
+pic_base
+  rotate: false
+  xy: 2, 186
+  size: 726, 310
+  orig: 726, 310
+  offset: 0, 0
+  index: -1
+tx_start
+  rotate: false
+  xy: 2, 70
+  size: 436, 114
+  orig: 436, 114
+  offset: 0, 0
+  index: -1
+tx_stop
+  rotate: false
+  xy: 730, 382
+  size: 436, 114
+  orig: 436, 114
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,90 @@
+
+ani_explode-3cd419784.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+01
+  rotate: false
+  xy: 2, 682
+  size: 338, 338
+  orig: 338, 338
+  offset: 0, 0
+  index: -1
+02
+  rotate: false
+  xy: 2, 342
+  size: 338, 338
+  orig: 338, 338
+  offset: 0, 0
+  index: -1
+03
+  rotate: false
+  xy: 342, 682
+  size: 338, 338
+  orig: 338, 338
+  offset: 0, 0
+  index: -1
+04
+  rotate: false
+  xy: 2, 2
+  size: 338, 338
+  orig: 338, 338
+  offset: 0, 0
+  index: -1
+05
+  rotate: false
+  xy: 342, 342
+  size: 338, 338
+  orig: 338, 338
+  offset: 0, 0
+  index: -1
+06
+  rotate: false
+  xy: 682, 682
+  size: 338, 338
+  orig: 338, 338
+  offset: 0, 0
+  index: -1
+07
+  rotate: false
+  xy: 342, 2
+  size: 338, 338
+  orig: 338, 338
+  offset: 0, 0
+  index: -1
+08
+  rotate: false
+  xy: 682, 342
+  size: 338, 338
+  orig: 338, 338
+  offset: 0, 0
+  index: -1
+09
+  rotate: false
+  xy: 1022, 682
+  size: 338, 338
+  orig: 338, 338
+  offset: 0, 0
+  index: -1
+10
+  rotate: false
+  xy: 682, 2
+  size: 338, 338
+  orig: 338, 338
+  offset: 0, 0
+  index: -1
+11
+  rotate: false
+  xy: 1022, 342
+  size: 338, 338
+  orig: 338, 338
+  offset: 0, 0
+  index: -1
+12
+  rotate: false
+  xy: 1362, 682
+  size: 338, 338
+  orig: 338, 338
+  offset: 0, 0
+  index: -1

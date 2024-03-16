@@ -1,0 +1,97 @@
+
+ani_fireworks-9bbb37eee.png
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: false
+  xy: 978, 82
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+2
+  rotate: false
+  xy: 926, 67
+  size: 50, 52
+  orig: 50, 52
+  offset: 0, 0
+  index: -1
+3
+  rotate: false
+  xy: 874, 65
+  size: 50, 54
+  orig: 50, 54
+  offset: 0, 0
+  index: -1
+4
+  rotate: false
+  xy: 818, 38
+  size: 54, 81
+  orig: 54, 81
+  offset: 0, 0
+  index: -1
+a1
+  rotate: false
+  xy: 2, 19
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+a2
+  rotate: false
+  xy: 104, 19
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+a3
+  rotate: false
+  xy: 206, 19
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+a4
+  rotate: false
+  xy: 308, 19
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+a5
+  rotate: false
+  xy: 410, 19
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+a6
+  rotate: false
+  xy: 512, 19
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+a7
+  rotate: false
+  xy: 614, 19
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+a8
+  rotate: false
+  xy: 716, 19
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+point
+  rotate: false
+  xy: 2, 2
+  size: 16, 15
+  orig: 16, 15
+  offset: 0, 0
+  index: -1

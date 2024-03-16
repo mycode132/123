@@ -1,0 +1,48 @@
+
+ani_show-bfdaf9e02.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bkg
+  rotate: false
+  xy: 2, 335
+  size: 827, 168
+  orig: 827, 168
+  offset: 0, 0
+  index: -1
+dice
+  rotate: false
+  xy: 831, 316
+  size: 187, 187
+  orig: 187, 187
+  offset: 0, 0
+  index: -1
+dice_pic
+  rotate: false
+  xy: 644, 233
+  size: 99, 100
+  orig: 99, 100
+  offset: 0, 0
+  index: -1
+light01
+  rotate: false
+  xy: 2, 2
+  size: 542, 112
+  orig: 542, 112
+  offset: 0, 0
+  index: -1
+light02
+  rotate: false
+  xy: 2, 116
+  size: 542, 113
+  orig: 542, 113
+  offset: 0, 0
+  index: -1
+word01
+  rotate: false
+  xy: 2, 231
+  size: 640, 102
+  orig: 640, 102
+  offset: 0, 0
+  index: -1

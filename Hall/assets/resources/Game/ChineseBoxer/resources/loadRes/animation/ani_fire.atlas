@@ -1,0 +1,62 @@
+
+ani_fire.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fire_0
+  rotate: false
+  xy: 0, 282
+  size: 123, 139
+  orig: 123, 139
+  offset: 0, 0
+  index: -1
+fire_1
+  rotate: false
+  xy: 0, 141
+  size: 123, 139
+  orig: 123, 139
+  offset: 0, 0
+  index: -1
+fire_2
+  rotate: false
+  xy: 125, 282
+  size: 123, 139
+  orig: 123, 139
+  offset: 0, 0
+  index: -1
+fire_3
+  rotate: false
+  xy: 0, 0
+  size: 123, 139
+  orig: 123, 139
+  offset: 0, 0
+  index: -1
+fire_4
+  rotate: false
+  xy: 125, 141
+  size: 123, 139
+  orig: 123, 139
+  offset: 0, 0
+  index: -1
+fire_5
+  rotate: false
+  xy: 250, 282
+  size: 123, 139
+  orig: 123, 139
+  offset: 0, 0
+  index: -1
+fire_6
+  rotate: false
+  xy: 125, 0
+  size: 123, 139
+  orig: 123, 139
+  offset: 0, 0
+  index: -1
+fire_7
+  rotate: false
+  xy: 250, 141
+  size: 123, 139
+  orig: 123, 139
+  offset: 0, 0
+  index: -1

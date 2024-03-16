@@ -1,0 +1,27 @@
+
+ani_vfx-d956d3789.png
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+img_vfx_black
+  rotate: true
+  xy: 987, 3
+  size: 298, 321
+  orig: 298, 321
+  offset: 0, 0
+  index: -1
+img_vfx_lucky
+  rotate: false
+  xy: 2, 92
+  size: 660, 209
+  orig: 660, 209
+  offset: 0, 0
+  index: -1
+img_vfx_red
+  rotate: true
+  xy: 664, 2
+  size: 299, 321
+  orig: 299, 321
+  offset: 0, 0
+  index: -1

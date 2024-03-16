@@ -1,0 +1,55 @@
+
+ani_show-d4bd6ce36.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ani_bowl
+  rotate: false
+  xy: 1444, 1066
+  size: 375, 375
+  orig: 375, 375
+  offset: 0, 0
+  index: -1
+ani_chess_r
+  rotate: false
+  xy: 2, 2
+  size: 87, 90
+  orig: 87, 90
+  offset: 0, 0
+  index: -1
+ani_chess_w
+  rotate: false
+  xy: 1821, 1351
+  size: 87, 90
+  orig: 87, 90
+  offset: 0, 0
+  index: -1
+ani_desktop_new
+  rotate: false
+  xy: 2, 517
+  size: 1440, 1498
+  orig: 1440, 1498
+  offset: 0, 0
+  index: -1
+ani_hand_new
+  rotate: true
+  xy: 2, 94
+  size: 421, 1376
+  orig: 421, 1376
+  offset: 0, 0
+  index: -1
+ani_plate
+  rotate: false
+  xy: 1444, 1443
+  size: 571, 572
+  orig: 571, 572
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 1444, 936
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1

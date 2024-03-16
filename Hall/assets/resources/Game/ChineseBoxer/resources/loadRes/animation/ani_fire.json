@@ -1,0 +1,94 @@
+{
+  "skeleton": {
+    "hash": "P3qo6BG6i9hFYyhWfsvHWp2ArsQ",
+    "spine": "3.6.53",
+    "width": 1024,
+    "height": 1336,
+    "images": "./images/"
+  },
+  "bones": [{
+    "name": "root"
+  }, {
+    "name": "img",
+    "parent": "root",
+    "y": -14,
+    "scaleX": 0.84,
+    "scaleY": 0.84
+  }],
+  "slots": [{
+    "name": "fire",
+    "bone": "img",
+    "attachment": "fire_0"
+  }],
+  "skins": {
+    "default": {
+      "fire": {
+        "fire_0": {
+          "width": 123,
+          "height": 139
+        },
+        "fire_1": {
+          "width": 123,
+          "height": 139
+        },
+        "fire_2": {
+          "width": 123,
+          "height": 139
+        },
+        "fire_3": {
+          "width": 123,
+          "height": 139
+        },
+        "fire_4": {
+          "width": 123,
+          "height": 139
+        },
+        "fire_5": {
+          "width": 123,
+          "height": 139
+        },
+        "fire_6": {
+          "width": 123,
+          "height": 139
+        },
+        "fire_7": {
+          "width": 123,
+          "height": 139
+        }
+      }
+    }
+  },
+  "animations": {
+    "animation": {
+      "slots": {
+        "fire": {
+          "attachment": [{
+            "time": 0,
+            "name": "fire_0"
+          }, {
+            "time": 0.1,
+            "name": "fire_1"
+          }, {
+            "time": 0.2,
+            "name": "fire_2"
+          }, {
+            "time": 0.3,
+            "name": "fire_3"
+          }, {
+            "time": 0.4,
+            "name": "fire_4"
+          }, {
+            "time": 0.5,
+            "name": "fire_5"
+          }, {
+            "time": 0.6,
+            "name": "fire_6"
+          }, {
+            "time": 0.7,
+            "name": "fire_7"
+          }]
+        }
+      }
+    }
+  }
+}
