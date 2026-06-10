@@ -1,0 +1,78 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "",
+    "_objFlags": 0,
+    "_rawFiles": [],
+    "_persist": false,
+    "_optimizationEnabled": false,
+    "_children": [1],
+    "_asyncLoadAssets": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "LevelSelectBtn",
+    "_children": [2],
+    "_components": [
+      {
+        "__type__": "cc.Button",
+        "_name": "",
+        "_interactable": true,
+        "_transition": 2,
+        "_duration": 0.1,
+        "_normalColor": {
+          "__type__": "cc.Color",
+          "r": 100,
+          "g": 180,
+          "b": 255,
+          "a": 255
+        },
+        "_pressedColor": {
+          "__type__": "cc.Color",
+          "r": 70,
+          "g": 140,
+          "b": 220,
+          "a": 255
+        }
+      },
+      {
+        "__type__": "cc.Sprite",
+        "_name": "",
+        "_materials": [],
+        "_spriteFrame": null,
+        "_type": 0,
+        "_sizeMode": 0
+      }
+    ],
+    "_contentSize": {
+      "_width": 120,
+      "_height": 80
+    },
+    "_position": {
+      "_x": 0,
+      "_y": 0
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Label",
+    "_components": [
+      {
+        "__type__": "cc.Label",
+        "_name": "",
+        "_string": "关卡 1",
+        "_fontSize": 24,
+        "_lineHeight": 30,
+        "_isSystemFontUsed": true
+      }
+    ],
+    "_contentSize": {
+      "_width": 120,
+      "_height": 80
+    },
+    "_position": {
+      "_x": 0,
+      "_y": 0
+    }
+  }
+]

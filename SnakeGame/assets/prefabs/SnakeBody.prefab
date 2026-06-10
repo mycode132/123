@@ -1,0 +1,42 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "",
+    "_objFlags": 0,
+    "_rawFiles": [],
+    "_persist": false,
+    "_optimizationEnabled": false,
+    "_children": [1],
+    "_asyncLoadAssets": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "SnakeBody",
+    "_children": [],
+    "_components": [
+      {
+        "__type__": "cc.Sprite",
+        "_name": "",
+        "_materials": [],
+        "_spriteFrame": null,
+        "_type": 0,
+        "_sizeMode": 1
+      }
+    ],
+    "_contentSize": {
+      "_width": 40,
+      "_height": 40
+    },
+    "_position": {
+      "_x": 0,
+      "_y": 0
+    },
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 0,
+      "g": 200,
+      "b": 0,
+      "a": 255
+    }
+  }
+]

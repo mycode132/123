@@ -1,0 +1,77 @@
+[
+  {
+    "__type__": "cc.Scene",
+    "_name": "MenuScene",
+    "_children": [1],
+    "_opacity": 255
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Canvas",
+    "_children": [2, 3, 4],
+    "_components": [
+      {"__type__": "cc.Canvas", "_name": "", "_designResolution": {"_width": 960, "_height": 640, "_fitWidth": true, "_fitHeight": true}},
+      {"__type__": "cc.Widget", "_name": "", "_alignFlags": 161, "_target": null},
+      {"__type__": "f7f9f8d0-88c1-4a2b-b3d4-5e6f7a8b9c0e", "_name": "MenuController"}
+    ],
+    "_contentSize": {"_width": 960, "_height": 640},
+    "_position": {"_x": 480, "_y": 320}
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Title",
+    "_components": [
+      {
+        "__type__": "cc.Label",
+        "_name": "",
+        "_string": "🐍 贪吃蛇",
+        "_fontSize": 64,
+        "_lineHeight": 64,
+        "_N$file": null,
+        "_isSystemFontUsed": true
+      }
+    ],
+    "_contentSize": {"_width": 400, "_height": 80},
+    "_position": {"_x": 480, "_y": 450}
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "StartBtn",
+    "_children": [5],
+    "_components": [
+      {"__type__": "cc.Button", "_name": "", "_interactable": true, "_target": null, "_transition": 2, "_duration": 0.1, "_normalColor": {"__type__": "cc.Color", "r": 255, "g": 255, "b": 255, "a": 255}, "_pressedColor": {"__type__": "cc.Color", "r": 200, "g": 200, "b": 200, "a": 255}},
+      {"__type__": "cc.Sprite", "_name": "", "_spriteFrame": null, "_type": 0, "_sizeMode": 0}
+    ],
+    "_contentSize": {"_width": 200, "_height": 60},
+    "_position": {"_x": 480, "_y": 320}
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "ExitBtn",
+    "_children": [6],
+    "_components": [
+      {"__type__": "cc.Button", "_name": "", "_interactable": true, "_target": null, "_transition": 2, "_duration": 0.1, "_normalColor": {"__type__": "cc.Color", "r": 255, "g": 255, "b": 255, "a": 255}, "_pressedColor": {"__type__": "cc.Color", "r": 200, "g": 200, "b": 200, "a": 255}},
+      {"__type__": "cc.Sprite", "_name": "", "_spriteFrame": null, "_type": 0, "_sizeMode": 0}
+    ],
+    "_contentSize": {"_width": 200, "_height": 60},
+    "_position": {"_x": 480, "_y": 230}
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Label",
+    "_components": [
+      {"__type__": "cc.Label", "_name": "", "_string": "开始游戏", "_fontSize": 28, "_lineHeight": 28, "_isSystemFontUsed": true}
+    ],
+    "_contentSize": {"_width": 200, "_height": 60},
+    "_position": {"_x": 0, "_y": 0}
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Label",
+    "_components": [
+      {"__type__": "cc.Label", "_name": "", "_string": "退出", "_fontSize": 28, "_lineHeight": 28, "_isSystemFontUsed": true}
+    ],
+    "_contentSize": {"_width": 200, "_height": 60},
+    "_position": {"_x": 0, "_y": 0}
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "__type__": "cc.Scene",
+    "_name": "LevelSelectScene",
+    "_children": [1],
+    "_opacity": 255
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Canvas",
+    "_children": [2, 3, 4],
+    "_components": [
+      {"__type__": "cc.Canvas", "_name": "", "_designResolution": {"_width": 960, "_height": 640, "_fitWidth": true, "_fitHeight": true}},
+      {"__type__": "cc.Widget", "_name": "", "_alignFlags": 161, "_target": null},
+      {"__type__": "f6f9f8d0-88c1-4a2b-b3d4-5e6f7a8b9c0d", "_name": "LevelManager"}
+    ],
+    "_contentSize": {"_width": 960, "_height": 640},
+    "_position": {"_x": 480, "_y": 320}
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Title",
+    "_components": [
+      {"__type__": "cc.Label", "_name": "", "_string": "选择关卡", "_fontSize": 48, "_lineHeight": 48, "_isSystemFontUsed": true}
+    ],
+    "_contentSize": {"_width": 300, "_height": 60},
+    "_position": {"_x": 480, "_y": 560}
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "ContentRoot",
+    "_components": [
+      {"__type__": "cc.Layout", "_name": "", "_layoutType": 0, "_resizeMode": 0, "_padding": 20, "_spacingX": 20, "_spacingY": 20}
+    ],
+    "_contentSize": {"_width": 600, "_height": 400},
+    "_position": {"_x": 480, "_y": 360}
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "BackBtn",
+    "_children": [5],
+    "_components": [
+      {"__type__": "cc.Button", "_name": "", "_interactable": true, "_transition": 2},
+      {"__type__": "cc.Sprite", "_name": "", "_spriteFrame": null, "_type": 0, "_sizeMode": 0}
+    ],
+    "_contentSize": {"_width": 120, "_height": 50},
+    "_position": {"_x": 100, "_y": 40}
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Label",
+    "_components": [
+      {"__type__": "cc.Label", "_name": "", "_string": "返回", "_fontSize": 24, "_lineHeight": 24, "_isSystemFontUsed": true}
+    ],
+    "_contentSize": {"_width": 120, "_height": 50},
+    "_position": {"_x": 0, "_y": 0}
+  }
+]
